@@ -11,7 +11,7 @@ export const MainRoutes = () => {
       {/* <Header /> */}
       <Switch>
         <Route exact path="/" component={LandingPage} />
-        <Route exact path="/login2" component={Login} />
+        <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
       </Switch>
     </BrowserRouter>
