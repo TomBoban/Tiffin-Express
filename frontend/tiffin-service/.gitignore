@@ -5,7 +5,12 @@
 /.pnp
 .pnp.js
 
+frontend\tiffin-service\node_modules
+frontend\tiffin-service\package-lock.json
 
+
+backend\node_modules
+backend\package-lock.json
 
 # testing
 /coverage
@@ -16,7 +21,7 @@
 # misc
 .DS_Store
 
-.env*
+backend\.env
 
 
 npm-debug.log*
