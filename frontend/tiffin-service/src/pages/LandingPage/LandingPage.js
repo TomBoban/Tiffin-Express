@@ -15,7 +15,7 @@ const LandingPage = () => {
 
   return (
     <Container
-      maxWidth="xl"
+      maxWidth={false}
       sx={{
         minHeight: "100vh",
         overflow: "hidden",
@@ -152,7 +152,11 @@ const LandingPage = () => {
                 >
                   <Grid item>
                     <AnimateButton>
-                      <Button size="large" className="btn_explore" variant="outlined">
+                      <Button
+                        size="large"
+                        className="btn_explore"
+                        variant="outlined"
+                      >
                         Explore More
                       </Button>
                     </AnimateButton>
