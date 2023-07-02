@@ -1,17 +1,19 @@
-import { Link } from "react-router-dom";
-
 import { useTheme } from "@mui/material/styles";
 import { Box, Button, Container, Grid, Typography } from "@mui/material";
 import "./LandingPage.css";
 
 import { motion } from "framer-motion";
-
+import { Link, useHistory } from "react-router-dom";
 import { EyeOutlined } from "@ant-design/icons";
 
 import AnimateButton from "../../components/Buttons/AnimateButton";
 
 const LandingPage = () => {
   const theme = useTheme();
+  const history = useHistory();
+  const handleProducts = () => {
+    history.push("/products");
+  };
 
   return (
     <Container
@@ -22,26 +24,6 @@ const LandingPage = () => {
       }}
       className="landing-main"
     >
-      <Grid className="menu-area">
-        <div className="rts-menu-area">
-          <div className="logo">
-            <img src="images/logo-nb1.png" alt="logo" className="img-logo" />
-          </div>
-
-          <div className="main-menu">
-            <ul className="nav-menu">
-              <li className="active-menu">Products</li>
-
-              <li>About Us</li>
-              <Link to="/login">
-                <button type="submit" className="btn-login">
-                  Login
-                </button>
-              </Link>
-            </ul>
-          </div>
-        </div>
-      </Grid>
       <Grid
         container
         spacing={2}
@@ -168,6 +150,7 @@ const LandingPage = () => {
                         size="large"
                         variant="contained"
                         className="btn_view"
+                        onClick={handleProducts}
                         startIcon={
                           <EyeOutlined style={{ fontSize: "1.15rem" }} />
                         }
