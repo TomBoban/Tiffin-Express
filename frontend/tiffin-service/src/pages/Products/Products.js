@@ -2,11 +2,17 @@ import React, { useEffect, useState } from "react";
 import {
   Card,
   CardContent,
+  CardHeader,
   CardMedia,
+  Checkbox,
   CircularProgress,
+  FormControl,
+  FormControlLabel,
   Grid,
   InputAdornment,
   Pagination,
+  Paper,
+  Stack,
   TextField,
   Typography,
 } from "@mui/material";
@@ -20,6 +26,7 @@ import "./Products.css";
 export const Products = () => {
   const dispatch = useDispatch();
   const [prodList, setProdList] = useState([]);
+  const [selectedCategories, setSelectedCategories] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
   const getProducts = useSelector((state) => state.productReducer.getProducts);
   const [page, setPage] = useState(1);
@@ -44,10 +51,15 @@ export const Products = () => {
     setPage(1);
   };
 
-  const filteredProducts = prodList.filter((item) =>
-    item.name.toLowerCase().includes(searchTerm.toLowerCase())
-  );
-
+  const filteredProducts = prodList.filter((item) => {
+    // Check if the item's category name is included in the selectedCategories array
+    if (selectedCategories.length === 0) {
+      // No categories selected, return all products
+      return true;
+    } else {
+      return selectedCategories.includes(item?.category[0]?.name);
+    }
+  });
   const renderRatingStars = (rating) => {
     const filledStars = Math.floor(rating);
     const hasHalfStar = rating % 1 !== 0;
@@ -73,11 +85,51 @@ export const Products = () => {
     setPage(value);
   };
 
+  const handleCategoryChange = (event) => {
+    const categoryName = event.target.name;
+    const isChecked = event.target.checked;
+
+    if (isChecked) {
+      setSelectedCategories((prevCategories) => [
+        ...prevCategories,
+        categoryName,
+      ]);
+    } else {
+      setSelectedCategories((prevCategories) =>
+        prevCategories.filter((category) => category !== categoryName)
+      );
+    }
+  };
+
+  const categories = [
+    ...new Set(prodList.map((item) => item?.category[0]?.name)),
+  ];
+  console.log(categories, "categories");
+
   return (
-    <Grid container spacing={2} sx={{ marginTop: "1rem" }}>
+    <Grid container spacing={2} sx={{ background: "rgb(230, 235, 241)" }}>
       <Grid item xs={12} sm={3}>
-        {/* Filter component */}
-        FIlter
+        <Card className="paper_filter">
+          <Typography className="filter_txt">Filter</Typography>
+        </Card>
+        <Card className="content_filter">
+          <FormControl component="fieldset">
+            <Typography className="filter_txt">Categories</Typography>
+            {categories.map((category) => (
+              <FormControlLabel
+                key={category}
+                control={
+                  <Checkbox
+                    checked={selectedCategories.includes(category)}
+                    onChange={handleCategoryChange}
+                    name={category}
+                  />
+                }
+                label={category}
+              />
+            ))}
+          </FormControl>
+        </Card>
       </Grid>
       <Grid item xs={12} sm={9} sx={{ padding: "1.5rem" }}>
         {getProducts === null ? (

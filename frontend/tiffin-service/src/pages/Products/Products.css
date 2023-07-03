@@ -5,3 +5,40 @@
 .product-card:hover {
     transform: scale(1.05);
 }
+
+.paper_filter {
+    color: rgb(38, 38, 38) !important;
+    border-top: 1px solid rgb(230, 235, 241);
+    border-bottom: 1px solid rgb(230, 235, 241);
+    border-left: 1px solid rgb(230, 235, 241);
+    border-image: initial;
+    border-radius: 4px 0px 0px 4px;
+    box-shadow: inherit;
+    background-color: white;
+    border-right: none;
+    padding: 1rem;
+    margin-top: 1rem;
+
+}
+
+.filter_txt {
+    color: #000 !important;
+    font-size: 1.1rem !important;
+    font-weight: 600 !important;
+
+
+}
+
+.content_filter {
+    color: rgb(38, 38, 38) !important;
+    border-top: 1px solid rgb(230, 235, 241);
+    border-bottom: 1px solid rgb(230, 235, 241);
+    border-left: 1px solid rgb(230, 235, 241);
+    border-image: initial;
+    border-radius: 4px 0px 0px 4px;
+    box-shadow: inherit;
+    background-color: white;
+    border-right: none;
+    padding: 1rem;
+    margin-top: .1rem;
+}

@@ -1,8 +1,8 @@
 .rts-menu-area {
     display: flex;
-    align-items: center;
+    align-items: start;
     justify-content: space-between;
-    padding: 0.8rem 0;
+    padding: 1.5rem 0;
     background: #1c1c1c;
 }
 
