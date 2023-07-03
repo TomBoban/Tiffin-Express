@@ -21,7 +21,8 @@ exports.getAllProducts = asyncHandler(async (req, res) => {
 
 exports.createProduct = asyncHandler(async (req, res) => {
   try {
-    const { name, image, description, price, rating } = req.body;
+    const { name, image, description, shortDescription, price, rating } =
+      req.body;
 
     // Create a new product object
     const product = new Product({
@@ -29,6 +30,7 @@ exports.createProduct = asyncHandler(async (req, res) => {
       name,
       image,
       description,
+      shortDescription,
       price,
       rating,
     });

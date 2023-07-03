@@ -10,11 +10,12 @@ import { Header } from "../components/Header/Header";
 export const MainRoutes = () => {
   return (
     <BrowserRouter>
+      <Header />
       <Switch>
         <Route exact path="/" component={LandingPage} />
         <Route exact path="/login" component={Login} />
         <Route exact path="/register" component={Register} />
-        <Header />
+
         <Route exact path="/products" component={Products} />
       </Switch>
     </BrowserRouter>

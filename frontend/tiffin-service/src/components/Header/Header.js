@@ -7,13 +7,15 @@ export const Header = () => {
   return (
     <Grid className="menu-area">
       <div className="rts-menu-area">
-        <div className="logo">
+        <Link to="/" className="logo">
           <img src="images/logo-nb1.png" alt="logo" className="img-logo" />
-        </div>
+        </Link>
 
         <div className="main-menu">
-          <ul className="nav-menu">
-            <li>Products</li>
+          <ul className="nav-menu mb-0">
+            <Link to="/products" className="log_link">
+              <li>Products</li>
+            </Link>
 
             <li>About Us</li>
             <Link to="/login" className="log_link">
