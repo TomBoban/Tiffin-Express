@@ -147,6 +147,7 @@ const userSlices = createSlice({
     builder.addCase(logoutAction.fulfilled, (state, action) => {
       state.userAuth = undefined;
       state.loading = false;
+      state.isLoggedIn = false;
       state.appErr = undefined;
       state.serverErr = undefined;
     });
