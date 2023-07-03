@@ -40,5 +40,23 @@
     background-color: white;
     border-right: none;
     padding: 1rem;
-    margin-top: .1rem;
+    margin-top: 0.7rem;
+}
+
+.filterBody {
+    padding-left: 2rem !important;
+}
+
+.text_filter {
+    color: rgb(38, 38, 38) !important;
+    border-top: 1px solid rgb(230, 235, 241);
+    border-bottom: 1px solid rgb(230, 235, 241);
+    border-left: 1px solid rgb(230, 235, 241);
+    border-image: initial;
+    border-radius: 4px 0px 0px 4px;
+    box-shadow: inherit;
+    background-color: white;
+    border-right: none;
+    padding: 1rem;
+    margin-top: 1rem;
 }

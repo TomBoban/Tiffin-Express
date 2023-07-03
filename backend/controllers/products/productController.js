@@ -24,15 +24,14 @@ exports.createProduct = asyncHandler(async (req, res) => {
   try {
     const {
       name,
-      image,
       description,
       shortDescription,
       price,
       rating,
       category,
+      image,
     } = req.body;
 
-    // Create a new product object
     const product = new Product({
       user: req.user._id,
       name,
