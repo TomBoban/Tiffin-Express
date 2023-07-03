@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import {
   Card,
   CardContent,
-  CardHeader,
   CardMedia,
   Checkbox,
   CircularProgress,
@@ -11,8 +10,6 @@ import {
   Grid,
   InputAdornment,
   Pagination,
-  Paper,
-  Stack,
   TextField,
   Typography,
 } from "@mui/material";
@@ -25,6 +22,7 @@ import "./Products.css";
 
 export const Products = () => {
   const dispatch = useDispatch();
+
   const [prodList, setProdList] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -43,7 +41,6 @@ export const Products = () => {
     if (getProducts && getProducts !== null) {
       setProdList(getProducts);
     }
-    console.log(prodList, "prodList");
   }, [getProducts, prodList]);
 
   const handleSearch = (event) => {
@@ -51,15 +48,28 @@ export const Products = () => {
     setPage(1);
   };
 
-  const filteredProducts = prodList.filter((item) => {
-    // Check if the item's category name is included in the selectedCategories array
-    if (selectedCategories.length === 0) {
-      // No categories selected, return all products
-      return true;
-    } else {
-      return selectedCategories.includes(item?.category[0]?.name);
-    }
-  });
+  const filteredProducts = prodList
+    .filter((item) => {
+      // Check if the item's category name is included in the selectedCategories array
+      if (selectedCategories.length === 0) {
+        // No categories selected, return all products
+        return true;
+      } else {
+        return selectedCategories.includes(item?.category[0]?.name);
+      }
+    })
+    .filter((item) => {
+      // Apply the search filter
+      if (searchTerm === "") {
+        // No search term entered, return all products
+        return true;
+      } else {
+        const lowerCaseSearchTerm = searchTerm.toLowerCase();
+        const productName = item?.name.toLowerCase();
+        return productName.includes(lowerCaseSearchTerm);
+      }
+    });
+
   const renderRatingStars = (rating) => {
     const maxStars = 5;
     const filledStars = Math.floor(rating);
@@ -105,7 +115,8 @@ export const Products = () => {
   const categories = [
     ...new Set(prodList.map((item) => item?.category[0]?.name)),
   ];
-  console.log(categories, "categories");
+
+  console.log(prodList, "prodList");
 
   return (
     <Grid
