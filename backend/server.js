@@ -4,6 +4,7 @@ const dotenv = require("dotenv");
 const dbConnect = require("./config/db/dbConnect");
 const usersRoute = require("./routes/user/userRoutes");
 const productsRoute = require("./routes/products/productsRoute");
+const categoryRoute = require("./routes/category/categoryRoute");
 
 dotenv.config();
 
@@ -21,6 +22,7 @@ app.use(cors());
 //user route
 app.use("/api/users", usersRoute);
 app.use("/api/products", productsRoute);
+app.use("/api/category", categoryRoute);
 
 //server
 const PORT = process.env.PORT || 5000;
