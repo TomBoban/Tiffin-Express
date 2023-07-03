@@ -22,7 +22,7 @@ export const Login = () => {
   const dispatch = useDispatch();
   const history = useHistory();
   const storeData = useSelector((store) => store.userReducer);
-  const {  loading, appErr, serverErr, isLoggedIn } = storeData;
+  const { loading, appErr, serverErr, isLoggedIn } = storeData;
 
   const formik = useFormik({
     initialValues: {
@@ -38,9 +38,7 @@ export const Login = () => {
   useEffect(() => {
     dispatch(clearUserData());
     if (isLoggedIn) {
-      alert("Log in Succesfull");
       history.push("/products");
-      dispatch(clearLoginData());
     } else {
       dispatch(clearLoginData());
     }

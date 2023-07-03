@@ -19,6 +19,8 @@ app.use(express.json());
 //cors
 app.use(cors());
 
+app.use(express.static("public"));
+
 //user route
 app.use("/api/users", usersRoute);
 app.use("/api/products", productsRoute);
