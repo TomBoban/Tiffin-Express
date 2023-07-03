@@ -1,0 +1,50 @@
+.Footer {
+    background-color: #1c1c1c;
+    color: white;
+    padding: 2rem 0;
+}
+
+.foot-1 img-logo {
+    padding: 0.5rem 0;
+}
+
+.foot-1 p{
+    padding: 1rem 2rem 1rem 0;
+    font-weight: 500;
+}
+
+.footer-icons i{
+    padding: 0.5rem;
+    background: white;
+    color: orange;
+    margin: 0 0.6rem;
+    border-radius: 50%;
+}
+
+.Footer h3 {
+    color: orange;
+}
+
+.foot-2 ul li{
+    list-style: none;
+    color: white;
+    padding: 1rem 0;
+    font-weight: 500;
+}
+
+.foot-3 p {
+    font-weight: 500;
+    padding: 0.1rem 0;
+}
+
+.foot-3 i {
+    padding-right: 0.5rem;
+}
+
+
+
+
+
+
+
+
