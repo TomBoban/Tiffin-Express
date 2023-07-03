@@ -50,3 +50,9 @@
 .nav-menu li:hover {
     color: #DD5903;
 }
+
+.user_dropdown {
+    background: #fff !important;
+    border-radius: 30px !important;
+    font-size: 1.2rem !important;
+}

@@ -5,9 +5,11 @@ import "./Header.css";
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { logoutAction } from "../../redux/slice/usersSlice";
+import Dropdown from "react-dropdown-select";
 
 export const Header = () => {
-  const isLoggedIn = useSelector((state) => state.userReducer.isLoggedIn);
+  const userAuth = useSelector((state) => state.userReducer.userAuth);
+  console.log(userAuth, "userAuth");
 
   const history = useHistory();
   const dispatch = useDispatch();
@@ -16,6 +18,28 @@ export const Header = () => {
     await dispatch(logoutAction());
     history.push("/login");
   };
+  const profileFn = async () => {
+    history.push("/profile");
+  };
+
+  const handleOptionSelect = (selectedOptions) => {
+    if (selectedOptions.length > 0) {
+      const selectedOption = selectedOptions[0].value;
+      if (selectedOption === "logout") {
+        logoutFn();
+      } else if (selectedOption === "profile") {
+        profileFn();
+      } else if (selectedOption === "username") {
+        // Handle username click
+      }
+    }
+  };
+
+  const dropdownOptions = [
+    { value: "profile", label: "Profile" },
+
+    { value: "logout", label: "Logout" },
+  ];
 
   return (
     <Grid className="menu-area">
@@ -31,13 +55,21 @@ export const Header = () => {
             </Link>
             <Link to="/aboutus" className="log_link">
               <li>About Us</li>
-            </Link>            
-            <Link to="/login" className="log_link">
-              <li>Login</li>
             </Link>
-            {isLoggedIn ? (
-              <div onClick={logoutFn} className="log_link">
-                <li>Logout</li>
+            {userAuth ? (
+              <div className="dropdown-container">
+                <Dropdown
+                  options={dropdownOptions}
+                  className="user_dropdown"
+                  onChange={handleOptionSelect}
+                  placeholder={`${userAuth?.firstName} ${userAuth?.lastName}`}
+                  dropdownHandleRenderer={(selectedOption, placeholder) => (
+                    <li>
+                      {selectedOption ? selectedOption.label : placeholder} ▼
+                    </li>
+                  )}
+                  searchable={false}
+                />
               </div>
             ) : (
               <Link to="/login" className="log_link">
