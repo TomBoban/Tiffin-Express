@@ -6,8 +6,9 @@ import { Register } from "../pages/Login/Register";
 import LandingPage from "../pages/LandingPage/LandingPage";
 import { Products } from "../pages/Products/Products";
 import { Header } from "../components/Header/Header";
-import {AboutUs} from "../pages/About Us/AboutUs";
+import { AboutUs } from "../pages/About Us/AboutUs";
 import { Footer } from "../components/Footer/Footer";
+import { Profile } from "../pages/Profile/Profile";
 
 export const MainRoutes = () => {
   return (
@@ -19,6 +20,7 @@ export const MainRoutes = () => {
         <Route exact path="/register" component={Register} />
         <Route exact path="/aboutus" component={AboutUs} />
         <Route exact path="/products" component={Products} />
+        <Route exact path="/profile" component={Profile} />
       </Switch>
       <Footer />
     </BrowserRouter>
