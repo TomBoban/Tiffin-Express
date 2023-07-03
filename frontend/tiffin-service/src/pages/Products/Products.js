@@ -61,8 +61,9 @@ export const Products = () => {
     }
   });
   const renderRatingStars = (rating) => {
+    const maxStars = 5;
     const filledStars = Math.floor(rating);
-    const hasHalfStar = rating % 1 !== 0;
+    const remainingStars = maxStars - filledStars;
 
     const starElements = [];
 
@@ -70,8 +71,8 @@ export const Products = () => {
       starElements.push(<AiFillStar key={i} />);
     }
 
-    if (hasHalfStar) {
-      starElements.push(<AiOutlineStar key={filledStars} />);
+    for (let i = 0; i < remainingStars; i++) {
+      starElements.push(<AiOutlineStar key={filledStars + i} />);
     }
 
     return starElements;
@@ -107,8 +108,12 @@ export const Products = () => {
   console.log(categories, "categories");
 
   return (
-    <Grid container spacing={2} sx={{ background: "rgb(230, 235, 241)" }}>
-      <Grid item xs={12} sm={3}>
+    <Grid
+      container
+      spacing={2}
+      sx={{ background: "rgb(230, 235, 241)", minHeight: "100vh" }}
+    >
+      <Grid item xs={12} sm={2} className="filterBody">
         <Card className="paper_filter">
           <Typography className="filter_txt">Filter</Typography>
         </Card>
@@ -131,12 +136,12 @@ export const Products = () => {
           </FormControl>
         </Card>
       </Grid>
-      <Grid item xs={12} sm={9} sx={{ padding: "1.5rem" }}>
+      <Grid item xs={12} sm={10} sx={{ paddingRight: "1rem" }}>
         {getProducts === null ? (
           <CircularProgress />
         ) : (
           <>
-            <Grid sx={{ paddingBottom: "1rem", width: "300px" }}>
+            <Card className="text_filter">
               <TextField
                 label="Search Products"
                 variant="outlined"
@@ -154,14 +159,15 @@ export const Products = () => {
                   },
                 }}
                 sx={{
-                  marginTop: "1rem",
                   "& .MuiInputBase-root": {
                     height: "50px", // Adjust the height as per your preference
+                    width: "300px",
                   },
                 }}
               />
-            </Grid>
-            <Grid container spacing={2}>
+            </Card>
+
+            <Grid container spacing={2} sx={{ marginTop: "0.4rem" }}>
               {paginatedProducts.map((item) => (
                 <Grid key={item._id} item xs={12} sm={6} lg={4}>
                   <Card className="product-card" sx={{ cursor: "pointer" }}>
