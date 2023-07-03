@@ -42,12 +42,7 @@ h2{
   }
   .grid-item3 {
     grid-column: span 1;
-    background-color: #FBAB7E;
-    background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
-    color: black;
-    justify-content: left;
-    font-weight: 400;
-    padding-left: 1.5px;
+    
   }
   .grid-item4 {
     grid-column: span 1;
@@ -56,7 +51,12 @@ h2{
   }
   .grid-item5 {
     grid-column: span 1;
-     background-image: linear-gradient(to left, rgb(248, 178, 108) , rgb(247, 247, 243));
+    background-color: #FBAB7E;
+    background-image: linear-gradient(62deg, #FBAB7E 0%, #F7CE68 100%);
+    color: black;
+    justify-content: left;
+    font-weight: 400;
+    padding-left: 1.5px;
   }
   
   
