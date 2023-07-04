@@ -9,7 +9,6 @@ import Dropdown from "react-dropdown-select";
 
 export const Header = () => {
   const userAuth = useSelector((state) => state.userReducer.userAuth);
-  console.log(userAuth, "userAuth");
 
   const history = useHistory();
   const dispatch = useDispatch();

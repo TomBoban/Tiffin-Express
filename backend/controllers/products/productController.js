@@ -1,4 +1,5 @@
 const asyncHandler = require("express-async-handler");
+const mongoose = require("mongoose");
 const Product = require("../../model/products/ProductModel");
 
 //@access: public
@@ -17,6 +18,32 @@ exports.getAllProducts = asyncHandler(async (req, res) => {
     res.status(500).json({ message: "Failed to get products" });
   }
 });
+
+//@access: public
+
+exports.getSingleProduct = asyncHandler(async (req, res) => {
+  try {
+    const { id } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return res.status(400).json({ message: "Invalid product ID" });
+    }
+
+    const product = await Product.findById(id)
+      .populate("category", "name")
+      .exec();
+
+    if (product) {
+      res.json(product);
+    } else {
+      res.status(404).json({ message: "Product not found" });
+    }
+  } catch (error) {
+    console.error(error, "Error");
+    res.status(500).json({ message: "Failed to get the product" });
+  }
+});
+
 //@desc:Create a single product
 //@access: private Admin post
 

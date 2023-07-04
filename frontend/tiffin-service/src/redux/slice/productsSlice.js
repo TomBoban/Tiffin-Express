@@ -15,7 +15,7 @@ export const getAllProducts = createAsyncThunk("products/getAll", async () => {
 
       config
     );
-   
+
     return res.data;
   } catch (error) {
     if (!error?.response) {
@@ -24,6 +24,32 @@ export const getAllProducts = createAsyncThunk("products/getAll", async () => {
     }
   }
 });
+
+// Get single product action
+export const getSingleProduct = createAsyncThunk(
+  "product/single",
+  async (id) => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+      },
+    };
+    try {
+      const res = await axios.get(
+        `${baseUrl}/api/products/${id}`,
+
+        config
+      );
+
+      return res.data;
+    } catch (error) {
+      if (!error?.response) {
+        console.log(error, "err");
+        throw error;
+      }
+    }
+  }
+);
 
 //admin
 // Create Product action
@@ -60,11 +86,13 @@ const productSlices = createSlice({
   name: "products",
   initialState: {
     getProducts: null,
+    singleProduct: null,
     createProduct: null,
   },
   reducers: {
     clearProductsData: (state) => {
       state.getProducts = null;
+      state.singleProduct = null;
       state.appErr = undefined;
       state.serverErr = undefined;
     },
@@ -84,6 +112,25 @@ const productSlices = createSlice({
       state.serverErr = undefined;
     });
     builder.addCase(getAllProducts.rejected, (state, action) => {
+      state.loading = false;
+      state.appErr = action?.payload?.message;
+      state.serverErr = action?.error?.message;
+    });
+
+    //Get Single Product
+
+    builder.addCase(getSingleProduct.pending, (state, action) => {
+      state.loading = true;
+      state.appErr = undefined;
+      state.serverErr = undefined;
+    });
+    builder.addCase(getSingleProduct.fulfilled, (state, action) => {
+      state.loading = false;
+      state.singleProduct = action?.payload;
+      state.appErr = undefined;
+      state.serverErr = undefined;
+    });
+    builder.addCase(getSingleProduct.rejected, (state, action) => {
       state.loading = false;
       state.appErr = action?.payload?.message;
       state.serverErr = action?.error?.message;
