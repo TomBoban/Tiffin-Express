@@ -7,38 +7,34 @@ export const Footer = () => {
         <div className='Footer'>
             <div className='container'>
                 <div className='row'>
-                    <div className="col-sm-4 col-lg-4 foot-1">
+                <div className="col foot-1">
                         <img src="images/logo-nb1.png" alt="logo" className="img-logo" />
-                        <p>The best tiffin service in the Waterloo. Grab new offers and register now!<br/>
-                           Subscribe, Eat, Enjoy!<br/>
-                        &copy; 2023 Tiffin-Express</p>
-                        <div className='footer-icons'>
-                            <i class="fa-brands fa-facebook"></i>
-                            <i class="fa-brands fa-twitter"></i>
-                            <i class="fa-brands fa-instagram"></i>
-                            <i class="fa-brands fa-youtube"></i>
-                        </div>
+                        <p>The best tiffin service in the Waterloo.<br/> Grab new offers and register now!<br/>
+                           Subscribe, Eat, Enjoy!<br/></p>
                     </div>
-                    <div className="col-sm-4 col-lg-4 foot-2">
+                    <div className="col foot-2">
                         <h3>Quick Links</h3>
-                        <ul className='quick-links align-items-center'>
+                        <ul className='quick-links align-items-left'>
                             <Link to="/products" className="log_link">
                                 <li>Products</li>
                             </Link>
-
-                            <li>About Us</li>
+                            <Link to="/aboutus" className="log_link">
+                                <li>About Us</li>
+                            </Link>    
                             <Link to="/login" className="log_link">
                                 <li>Login</li>
                             </Link>
                         </ul>
                     </div>
-                    <div className="col-sm-4 col-lg-4 foot-3">
-                        <h3>Contact us:</h3>
-                        <p><i class="fa-sharp fa-solid fa-phone"></i> +1 234-456-7890</p>
-                        <p><i class="fa-solid fa-envelope"></i> tiffinexpress@gmail.com</p>
-                        <p><i class="fa-solid fa-location-dot"></i> Waterloo, ON, CA</p>
+                    <div className="col foot-3">
+                        <h3>Contact Us</h3>
+                        <p><i className="fa-sharp fa-solid fa-phone"></i> +1 234-456-7890</p>
+                        <p><i className="fa-solid fa-envelope"></i> tiffinexpress@gmail.com</p>
+                        <p><i className="fa-solid fa-location-dot"></i> Waterloo, ON, CA</p>
                     </div>
                 </div>
+
+                <small>&copy; Tiffin Express Inc., All rights reserved.</small>
             </div>
         </div>
     );

@@ -1,50 +1,66 @@
 .Footer {
     background-color: #1c1c1c;
     color: white;
-    padding: 2rem 0;
-}
-
-.foot-1 img-logo {
-    padding: 0.5rem 0;
-}
-
-.foot-1 p{
-    padding: 1rem 2rem 1rem 0;
-    font-weight: 500;
-}
-
-.footer-icons i{
-    padding: 0.5rem;
-    background: white;
-    color: orange;
-    margin: 0 0.6rem;
-    border-radius: 50%;
-}
-
-.Footer h3 {
-    color: orange;
-}
-
-.foot-2 ul li{
-    list-style: none;
-    color: white;
     padding: 1rem 0;
-    font-weight: 500;
-}
+  }
+  
+  .container {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: stretch;
+    margin-left: 15%;
+  }
+  
+  .row {
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .col-md-6 {
+    text-align: left;
+  }
+  
+  .foot-1 p {
+    font-size: small;
+    padding: 0 2rem 0.5rem 0;
+  }
 
-.foot-3 p {
-    font-weight: 500;
-    padding: 0.1rem 0;
-}
-
-.foot-3 i {
+  .foot-1 .img-logo {
+    padding-bottom: 10px;
+  }
+  
+  .foot-2 ul {
+    padding: 0;
+  }
+  
+  .foot-2 ul .log_link {
+    padding: 0.35rem 0;
+    font-weight: 100;
+  }
+  
+  .foot-2 ul a {
+    list-style: none;
+    color: aliceblue;
+  }
+  
+  .foot-3 i {
     padding-right: 0.5rem;
-}
-
-
-
-
-
-
-
-
+  }
+  
+  .foot-3 p {
+    font-size: small;
+    padding: 0.35rem 0;
+  }
+  
+  .Footer h3 {
+    color: orange;
+  }
+  
+  small {
+    display: block;
+    text-align: center;
+    margin-top: 1rem;
+    font-size: small;
+  }
+  

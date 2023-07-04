@@ -32,9 +32,6 @@ export const Header = () => {
             <Link to="/aboutus" className="log_link">
               <li>About Us</li>
             </Link>            
-            <Link to="/login" className="log_link">
-              <li>Login</li>
-            </Link>
             {isLoggedIn ? (
               <div onClick={logoutFn} className="log_link">
                 <li>Logout</li>
