@@ -22,7 +22,7 @@ export const MainRoutes = () => {
         <Route exact path="/aboutus" component={AboutUs} />
         <Route exact path="/products" component={Products} />
         <Route exact path="/products/:id" component={ProductDetails} />
-        <Route exact path="/profile" component={Profile} />
+        <Route exact path="/profile/:id" component={Profile} />
       </Switch>
       <Footer />
     </BrowserRouter>

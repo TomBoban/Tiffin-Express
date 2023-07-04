@@ -21,12 +21,16 @@ const userSchema = new mongoose.Schema(
       type: String,
       required: [true, "Email is required"],
     },
-
     password: {
       type: String,
       required: [true, "Password is required"],
     },
-
+    phone: {
+      type: String,
+    },
+    address: {
+      type: String,
+    },
     isAdmin: {
       type: Boolean,
       default: false,
@@ -34,13 +38,11 @@ const userSchema = new mongoose.Schema(
     role: {
       type: String,
       enum: ["Admin", "Customer", "Service"],
-      default: "Customer"
+      default: "Customer",
     },
-
     passwordChangedAt: Date,
     passwordResetToken: String,
     passwordResetExpires: Date,
-
     active: {
       type: Boolean,
       default: false,

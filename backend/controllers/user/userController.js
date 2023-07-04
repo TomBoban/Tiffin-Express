@@ -3,8 +3,6 @@ const generateToken = require("../../config/token/generateToken");
 const User = require("../../model/user/UserModel");
 const validateMongoDbId = require("../../utils/validateMongoID");
 require("dotenv").config();
-const crypto = require("crypto");
-const fs = require("fs");
 
 const userRegisterCtrl = expressAsyncHandler(async (req, res) => {
   const userExists = await User.findOne({
@@ -52,7 +50,53 @@ const userLoginCtrl = expressAsyncHandler(async (req, res) => {
   }
 });
 
+//User info
+const updateUserInfoCtrl = expressAsyncHandler(async (req, res) => {
+  const userId = req.params.id;
+  console.log(userId, "userId");
+  console.log(req.body, "body");
+
+  try {
+    // Check if the user exists
+    const user = await User.findById(userId);
+
+    if (!user) {
+      res.status(404);
+      throw new Error("User not found");
+    }
+
+    const userUpdate = await User.findByIdAndUpdate(userId, {
+      ...req.body,
+      user: req.user?._id,
+    });
+
+    res.json(userUpdate);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
+//Get single Users
+const getSingleUserCtrl = expressAsyncHandler(async (req, res) => {
+  const userId = req.params.id;
+
+  try {
+    // Check if the user exists
+    const user = await User.findById(userId);
+    if (!user) {
+      res.status(404);
+      throw new Error("User not found");
+    }
+
+    res.json(user);
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 module.exports = {
   userRegisterCtrl,
   userLoginCtrl,
+  updateUserInfoCtrl,
+  getSingleUserCtrl,
 };
