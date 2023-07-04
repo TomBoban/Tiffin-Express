@@ -54,6 +54,11 @@ export const Header = () => {
             </Link>
             <Link to="/aboutus" className="log_link">
               <li>About Us</li>
+            </Link>            
+            {isLoggedIn ? (
+              <div onClick={logoutFn} className="log_link">
+                <li>Logout</li>
+
             </Link>
             {userAuth ? (
               <div className="dropdown-container">
@@ -68,7 +73,6 @@ export const Header = () => {
                     </li>
                   )}
                   searchable={false}
-                />
               </div>
             ) : (
               <Link to="/login" className="log_link">
