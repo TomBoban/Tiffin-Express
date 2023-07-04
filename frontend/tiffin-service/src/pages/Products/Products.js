@@ -17,12 +17,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../../redux/slice/productsSlice";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { BsSearch } from "react-icons/bs";
+import { Link, useHistory } from "react-router-dom";
 
 import "./Products.css";
 
 export const Products = () => {
   const dispatch = useDispatch();
-
+  const history = useHistory();
   const [prodList, setProdList] = useState([]);
   const [selectedCategories, setSelectedCategories] = useState([]);
   const [searchTerm, setSearchTerm] = useState("");
@@ -116,7 +117,9 @@ export const Products = () => {
     ...new Set(prodList.map((item) => item?.category[0]?.name)),
   ];
 
-  console.log(prodList, "prodList");
+  const onCardClick = (id) => {
+    history.push(`/products/${id}`);
+  };
 
   return (
     <Grid
@@ -181,7 +184,11 @@ export const Products = () => {
             <Grid container spacing={2} sx={{ marginTop: "0.4rem" }}>
               {paginatedProducts.map((item) => (
                 <Grid key={item._id} item xs={12} sm={6} lg={4}>
-                  <Card className="product-card" sx={{ cursor: "pointer" }}>
+                  <Card
+                    className="product-card"
+                    sx={{ cursor: "pointer" }}
+                    onClick={() => onCardClick(item._id)}
+                  >
                     <CardMedia
                       image={item?.image}
                       component="img"
