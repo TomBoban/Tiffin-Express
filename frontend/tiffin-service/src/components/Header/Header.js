@@ -18,7 +18,7 @@ export const Header = () => {
     history.push("/login");
   };
   const profileFn = async () => {
-    history.push("/profile");
+    history.push(`/profile/${userAuth?._id}`);
   };
 
   const handleOptionSelect = (selectedOptions) => {
