@@ -86,14 +86,14 @@ const userSlices = createSlice({
   initialState: {
     userAuth: userLoginFromStorage,
     isRegistered: false,
-    isLoggedIn: false,
+  
   },
   reducers: {
     clearUserData: (state) => {
       state.isRegistered = false;
     },
     clearLoginData: (state) => {
-      state.isLoggedIn = false;
+      
       state.appErr = undefined;
       state.serverErr = undefined;
     },
@@ -129,8 +129,7 @@ const userSlices = createSlice({
     builder.addCase(loginUserAction.fulfilled, (state, action) => {
       state.userAuth = action?.payload;
       state.loading = false;
-      state.isLoggedIn = true;
-      state.appErr = undefined;
+            state.appErr = undefined;
       state.serverErr = undefined;
     });
 
@@ -147,7 +146,7 @@ const userSlices = createSlice({
     builder.addCase(logoutAction.fulfilled, (state, action) => {
       state.userAuth = undefined;
       state.loading = false;
-      state.isLoggedIn = false;
+      
       state.appErr = undefined;
       state.serverErr = undefined;
     });
