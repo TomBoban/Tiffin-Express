@@ -47,36 +47,34 @@ export const Header = () => {
           <img src="images/logo-nb1.png" alt="logo" className="img-logo" />
         </Link>
 
-        <div className="main-menu">
-          <ul className="nav-menu mb-0">
-            <Link to="/products" className="log_link">
-              <li>Products</li>
+        <ul className="nav-menu mb-0">
+          <Link to="/products" className="log_link">
+            <li>Products</li>
+          </Link>
+          <Link to="/aboutus" className="log_link">
+            <li>About Us</li>
+          </Link>
+          {userAuth ? (
+            <div className="dropdown-container">
+              <Dropdown
+                options={dropdownOptions}
+                className="user_dropdown"
+                onChange={handleOptionSelect}
+                placeholder={`${userAuth?.firstName} ${userAuth?.lastName}`}
+                dropdownHandleRenderer={(selectedOption, placeholder) => (
+                  <li>
+                    {selectedOption ? selectedOption.label : placeholder} ▼
+                  </li>
+                )}
+                searchable={false}
+              />
+            </div>
+          ) : (
+            <Link to="/login" className="log_link">
+              <li>Login</li>
             </Link>
-            <Link to="/aboutus" className="log_link">
-              <li>About Us</li>
-            </Link>
-            {userAuth ? (
-              <div className="dropdown-container">
-                <Dropdown
-                  options={dropdownOptions}
-                  className="user_dropdown"
-                  onChange={handleOptionSelect}
-                  placeholder={`${userAuth?.firstName} ${userAuth?.lastName}`}
-                  dropdownHandleRenderer={(selectedOption, placeholder) => (
-                    <li>
-                      {selectedOption ? selectedOption.label : placeholder} ▼
-                    </li>
-                  )}
-                  searchable={false}
-                />
-              </div>
-            ) : (
-              <Link to="/login" className="log_link">
-                <li>Login</li>
-              </Link>
-            )}
-          </ul>
-        </div>
+          )}
+        </ul>
       </div>
     </Grid>
   );

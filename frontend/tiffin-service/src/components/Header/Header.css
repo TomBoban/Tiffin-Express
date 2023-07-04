@@ -25,12 +25,13 @@
 
 .nav-menu {
     list-style: none;
-
+    font-family: sans-serif;
+    text-transform: uppercase;
     display: flex;
     justify-content: center;
     gap: 5rem;
     align-items: center;
-    margin-right: 1rem !important;
+    margin-right: 3rem !important;
 }
 
 .log_link {

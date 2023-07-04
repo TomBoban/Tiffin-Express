@@ -13,7 +13,7 @@
     border: none rgb(230, 235, 241);
     border-radius: 4px;
     box-shadow: inherit;
-    background-color: rgb(230, 244, 255);
+    background-color: rgb(56 157 236);
     padding: 2rem;
     margin: 2% 0;
 }
@@ -23,15 +23,15 @@
     line-height: 1.66;
     font-family: "Public Sans", sans-serif;
     font-weight: 400 !important;
-    color: rgb(140, 140, 140) !important;
+    color: #fff !important;
 }
 
 .contain_btn {
     color: rgb(255, 255, 255) !important;
-    background-color: rgb(22, 119, 255) !important;
+    background-color: rgb(34 36 37) !important;
     box-shadow: none !important;
     font-weight: 400 !important;
-    padding: 0.7rem !important;
+    padding: 1rem !important;
 }
 
 .box_container {
@@ -45,4 +45,11 @@
     border-top: 1px solid rgb(230, 235, 241);
     border-bottom: 1px solid rgb(230, 235, 241);
     border-left: 1px solid rgb(230, 235, 241);
+}
+
+.update_sbt {
+    background: rgb(56 157 236) !important;
+    color: #fff !important;
+    padding: 1rem 2rem !important;
+
 }
