@@ -53,8 +53,6 @@ const userLoginCtrl = expressAsyncHandler(async (req, res) => {
 //User info
 const updateUserInfoCtrl = expressAsyncHandler(async (req, res) => {
   const userId = req.params.id;
-  console.log(userId, "userId");
-  console.log(req.body, "body");
 
   try {
     // Check if the user exists

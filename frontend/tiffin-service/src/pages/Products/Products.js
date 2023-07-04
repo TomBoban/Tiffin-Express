@@ -31,8 +31,6 @@ export const Products = () => {
   const [page, setPage] = useState(1);
 
   const itemsPerPage = 9;
-  const totalItems = prodList.length;
-  const totalPages = Math.ceil(totalItems / itemsPerPage);
 
   useEffect(() => {
     dispatch(getAllProducts());
@@ -89,6 +87,9 @@ export const Products = () => {
     return starElements;
   };
 
+  const totalItems = filteredProducts.length;
+  const totalPages = Math.ceil(totalItems / itemsPerPage);
+
   const startIndex = (page - 1) * itemsPerPage;
   const endIndex = startIndex + itemsPerPage;
   const paginatedProducts = filteredProducts.slice(startIndex, endIndex);
@@ -125,7 +126,11 @@ export const Products = () => {
     <Grid
       container
       spacing={2}
-      sx={{ background: "rgb(230, 235, 241)", minHeight: "100vh" }}
+      sx={{
+        background: "rgb(230, 235, 241)",
+        minHeight: "100vh",
+        marginTop: "0",
+      }}
     >
       <Grid item xs={12} sm={2} className="filterBody">
         <Card className="paper_filter">

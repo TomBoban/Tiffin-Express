@@ -86,7 +86,9 @@ export const Profile = () => {
                 {/* <ProfileRadialChart /> */}
               </Box>
               <Stack spacing={0.75}>
-                <Typography variant="h5">Edit Your Profile</Typography>
+                <Typography sx={{ color: "#fff" }} variant="h5">
+                  Edit Your Profile
+                </Typography>
                 <Typography className="pro_head" color="secondary">
                   Complete your profile to unlock all features
                 </Typography>
@@ -241,8 +243,10 @@ export const Profile = () => {
                     >
                       <Button
                         onClick={formik.handleSubmit}
-                        variant="contained"
-                        sx={{ textTransform: "none" }}
+                        className="update_sbt"
+                        sx={{
+                          textTransform: "none",
+                        }}
                       >
                         Update Profile
                       </Button>
@@ -250,6 +254,7 @@ export const Profile = () => {
                         variant="outlined"
                         color="secondary"
                         onClick={handleCancel}
+                        sx={{ padding: "1rem 3rem" }}
                       >
                         Cancel
                       </Button>
