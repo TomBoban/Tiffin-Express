@@ -57,6 +57,20 @@ const productSchema = mongoose.Schema(
         ref: "Category",
       },
     ],
+    menuOption1: {
+      type: String,
+     default:"Meal Plan not ready"
+    },
+    menuOption2: {
+      type: String,
+      default:"Meal Plan not ready"
+    
+    },
+    menuOption3: {
+        type: String,
+        default:"Meal Plan not ready"
+    
+      },
   },
   {
     timestamps: true,

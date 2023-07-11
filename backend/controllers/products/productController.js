@@ -57,6 +57,9 @@ exports.createProduct = asyncHandler(async (req, res) => {
       rating,
       category,
       image,
+      menuOption1,
+      menuOption2,
+      menuOption3
     } = req.body;
 
     const product = new Product({
@@ -68,6 +71,9 @@ exports.createProduct = asyncHandler(async (req, res) => {
       price,
       rating,
       category,
+      menuOption1,
+      menuOption2,
+      menuOption3
     });
 
     // Save the product to the database
@@ -92,6 +98,9 @@ exports.updateProduct = asyncHandler(async (req, res) => {
       price,
       rating,
       category,
+      menuOption1,
+      menuOption2,
+      menuOption3
     } = req.body;
 
     const productId = req.params.id;
@@ -108,6 +117,9 @@ exports.updateProduct = asyncHandler(async (req, res) => {
       product.price = price || product.price;
       product.rating = rating || product.rating;
       product.category = category || product.category;
+      product.menuOption1 = menuOption1 || product.menuOption1;
+      product.menuOption2 = menuOption2 || product.menuOption2;
+      product.menuOption3 = menuOption3 || product.menuOption3;
 
       // Save the updated product to the database
       const updatedProduct = await product.save();
