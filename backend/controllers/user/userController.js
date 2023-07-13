@@ -39,6 +39,7 @@ const userLoginCtrl = expressAsyncHandler(async (req, res) => {
         lastName: user?.lastName,
         email: user?.email,
         isAdmin: user?.isAdmin,
+        role:user?.role,
         token: generateToken(user?._id),
       });
     } else {

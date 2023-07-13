@@ -38,7 +38,9 @@ export const loginUserAction = createAsyncThunk(
         "Content-Type": "application/json",
       },
     };
-    console.log(userData, "dara");
+
+    
+ 
     try {
       const { data } = await axios.post(
         `${baseUrl}/api/users/login`,
