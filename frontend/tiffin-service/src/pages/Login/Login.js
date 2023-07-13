@@ -7,7 +7,7 @@ import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import {
   clearLoginData,
-  clearUserData,
+ 
   loginUserAction,
 } from "../../redux/slice/usersSlice";
 import { useFormik } from "formik";
@@ -24,6 +24,7 @@ export const Login = () => {
   const storeData = useSelector((store) => store.userReducer);
   const { loading, appErr, serverErr, userAuth } = storeData;
 
+
   const formik = useFormik({
     initialValues: {
       email: "",
@@ -36,10 +37,15 @@ export const Login = () => {
   });
 
   useEffect(() => {
-    dispatch(clearUserData());
-    if (userAuth) {
+    
+    if (userAuth?.role === "Customer") {
+     
       history.push("/products");
-    } else {
+    } else if(userAuth?.role === "Service"){
+      history.push("/service/dashboard");
+    }
+    
+    else {
       dispatch(clearLoginData());
     }
   }, [dispatch, history, userAuth]);

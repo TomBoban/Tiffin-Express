@@ -5,8 +5,8 @@ import { Link } from "react-router-dom";
 export const Footer = () => {
     return (
         <div className='Footer'>
-            <div className='container'>
-                <div className='row'>
+            <div className='container-footer'>
+                <div className='row p-0 m-0'>
                 <div className="col foot-1">
                         <img src="images/logo-nb1.png" alt="logo" className="img-logo" />
                         <p>The best tiffin service in the Waterloo.<br/> Grab new offers and register now!<br/>
@@ -35,7 +35,6 @@ export const Footer = () => {
                 </div>
 
                 <small>&copy; Tiffin Express Inc., All rights reserved.</small>
-
 
       </div>
     </div>
