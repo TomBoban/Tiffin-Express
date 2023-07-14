@@ -5,12 +5,15 @@ import {
   Checkbox,
   Container,
   Grid,
+  InputLabel,
   Select,
+  Stack,
   TextField,
   Typography,
 } from "@mui/material";
 import { Formik, Form } from "formik";
 import * as Yup from "yup";
+import { fontWeight } from "@mui/system";
 
 const INITIAL_FORM_STATE = {
   name: "",
@@ -34,63 +37,114 @@ const FORM_VALIDATION = Yup.object().shape({
 
 const CreateService = () => {
   return (
-    <Grid container>
-      <Grid item xs={12}>
-        <Container maxWidth="md">
-          <div className="formWrapper">
-            <Formik
-              initialValues={{
-                ...INITIAL_FORM_STATE,
-              }}
-              validationSchema={FORM_VALIDATION}
-              onSubmit={(values) => {
-                console.log(values);
+    <Grid container className="service_container">
+      <Formik
+        initialValues={{
+          ...INITIAL_FORM_STATE,
+        }}
+        validationSchema={FORM_VALIDATION}
+        onSubmit={(values) => {
+          console.log(values);
+        }}
+      >
+        <Grid spacing={2} item xs={12} className="service_semi_container">
+          <Grid item xs={12} className="service_header">
+            <Typography
+              sx={{
+                fontSize: "1rem",
+                fontFamily: "'Public Sans', sans-serif",
+                fontWeight: "600",
               }}
             >
-              <Form>
-                <Grid container spacing={2}>
-                  <Grid item xs={12}>
-                    <Typography>Add Your Service </Typography>
-                  </Grid>
+              Add Your Service{" "}
+            </Typography>
+          </Grid>
 
-                  <Grid item xs={12} lg={12}>
-                    <TextField name="name" label="Name"  sx={{width:"100%"}}/>
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField name="description" label="Description"   sx={{width:"100%"}}/>
-                  </Grid>
+          <Grid item xs={12} lg={12}>
+            <Stack spacing={1.25}>
+              <InputLabel sx={{ fontWeight: "700" }} htmlFor="email">
+                Name
+              </InputLabel>
+              <TextField name="name" label="Name" sx={{ width: "100%" }} />
+            </Stack>
+          </Grid>
+          <Grid item xs={12}>
+            <Stack spacing={1.25}>
+              <InputLabel sx={{ fontWeight: "700" }} htmlFor="email">
+                Description
+              </InputLabel>
+              <TextField
+                name="description"
+                label="Description"
+                sx={{ width: "100%" }}
+              />
+            </Stack>
+          </Grid>
 
-                  <Grid item xs={12}>
-                    <TextField
-                     sx={{width:"100%"}}
-                      name="shortDescription"
-                      label="Short Description"
-                    />
-                  </Grid>
+          <Grid item xs={12}>
+            <Stack spacing={1.25}>
+              <InputLabel sx={{ fontWeight: "700" }} htmlFor="email">
+                Short Description
+              </InputLabel>
+              <TextField
+                sx={{ width: "100%" }}
+                name="shortDescription"
+                label="Short Description"
+              />
+            </Stack>
+          </Grid>
 
-                  <Grid item xs={12} >
-                    <TextField name="price" label="Price"  sx={{width:"100%"}} />
-                  </Grid>
+          <Grid item xs={12}>
+            <Stack spacing={1.25}>
+              <InputLabel sx={{ fontWeight: "700" }} htmlFor="email">
+                Price
+              </InputLabel>
+              <TextField name="price" label="Price" sx={{ width: "100%" }} />
+            </Stack>
+          </Grid>
 
-                  <Grid item xs={12}>
-                    <TextField name="menuOption1" label="Menu 1"  sx={{width:"100%"}} />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField name="menuOption2" label="Menu 2"  sx={{width:"100%"}} />
-                  </Grid>
-                  <Grid item xs={12}>
-                    <TextField name="menuOption3" label="Menu 3"  sx={{width:"100%"}} />
-                  </Grid>
+          <Grid item xs={12}>
+            <Stack spacing={1.25}>
+              <InputLabel sx={{ fontWeight: "700" }} htmlFor="email">
+                Menu Item 1
+              </InputLabel>
+              <TextField
+                name="menuOption1"
+                label="Menu Item 1"
+                sx={{ width: "100%" }}
+              />
+            </Stack>
+          </Grid>
+          <Grid item xs={12}>
+            <Stack spacing={1.25}>
+              <InputLabel sx={{ fontWeight: "700" }} htmlFor="email">
+                Menu Item 2
+              </InputLabel>
+              <TextField
+                name="menuOption2"
+                label="Menu Item 2"
+                sx={{ width: "100%" }}
+              />
+            </Stack>
+          </Grid>
+          <Grid item xs={12}>
+            <Stack spacing={1.25}>
+              <InputLabel sx={{ fontWeight: "700" }} htmlFor="email">
+                Menu Item 3
+              </InputLabel>
+              <TextField
+                name="menuOption3"
+                label="Menu Item 3"
+                sx={{ width: "100%" }}
+              />
+            </Stack>
+          </Grid>
 
-                  <Grid item xs={12}>
-                    <Button>Submit Form</Button>
-                  </Grid>
-                </Grid>
-              </Form>
-            </Formik>
-          </div>
-        </Container>
-      </Grid>
+          <Grid item xs={12}>
+            <Button className="btn_submit">Submit Form</Button>
+          </Grid>
+        </Grid>
+      </Formik>
     </Grid>
   );
 };
