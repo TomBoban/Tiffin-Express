@@ -1,6 +1,6 @@
 import "./ProductDetails.css";
 import React, { useEffect, useState } from "react";
-import { CircularProgress, Grid, Paper } from "@mui/material";
+import { CircularProgress, Grid, Paper,CardMedia } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { getSingleProduct } from "../../redux/slice/productsSlice";
 import { Link, useParams, useHistory } from "react-router-dom";
@@ -34,7 +34,7 @@ export const ProductDetails = () => {
         ) : (
           <>
             <Grid item lg={6} sm={12}>
-              Image
+          <CardMedia  src={prodList?.image}/>
             </Grid>
             <Grid item lg={6} sm={12}>
               Details

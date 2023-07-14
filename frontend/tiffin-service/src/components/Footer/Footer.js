@@ -36,7 +36,6 @@ export const Footer = () => {
 
                 <small>&copy; Tiffin Express Inc., All rights reserved.</small>
 
-          
       </div>
     </div>
   );
