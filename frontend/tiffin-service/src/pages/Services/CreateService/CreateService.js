@@ -53,6 +53,7 @@ const getCategory = useSelector((state) => state.categoryReducer.getCategory);
 
 
 
+
   const handleFileDrop = (acceptedFiles) => {
     setFile(acceptedFiles[0]);
   };
@@ -81,7 +82,7 @@ const getCategory = useSelector((state) => state.categoryReducer.getCategory);
       menuOption3: values.menuOption3,
       image: values?.image,
     };
-  console.log(productData,"pp");
+ 
     await dispatch(createProduct({productData}))
   };
 

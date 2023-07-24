@@ -46,6 +46,8 @@ export const Login = () => {
       history.push("/products");
     } else if(userAuth?.role === "Service"){
       history.push("/service/dashboard");
+    } else if(userAuth?.isAdmin === true){
+
     }
     
     else {

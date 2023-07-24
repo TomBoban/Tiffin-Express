@@ -23,7 +23,9 @@ import {
 export const Profile = () => {
   const dispatch = useDispatch();
   const history = useHistory();
+  const userAuth = useSelector((state) => state.userReducer.userAuth);
 
+  console.log(userAuth, "auth");
   const { id } = useParams();
   const singleUserData = useSelector(
     (state) => state.userReducer.singleUserData
@@ -61,10 +63,12 @@ export const Profile = () => {
       address: values?.address,
       role: values?.role,
     };
-
     await dispatch(updateUserInfo({ id, data }));
-
-    history.push(`/products`);
+    if (userAuth?.role === "Service") {
+      history.push(`/service/dashboard`);
+    } else {
+      history.push(`/products`);
+    }
   };
   const handleCancel = () => {
     history.push(`/products`);
