@@ -66,6 +66,7 @@ export const createProduct = createAsyncThunk(
     console.log(productData.productData,"val");
     const formData = new FormData();
     formData.append("name", productData?.productData?.name);
+    formData.append("category", productData?.productData?.category);
     formData.append("description", productData?.productData?.description);
     formData.append("shortDescription", productData?.productData?.shortDescription);
     formData.append("price", productData?.productData?.price);
