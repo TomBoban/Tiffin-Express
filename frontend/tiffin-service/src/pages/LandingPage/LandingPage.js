@@ -99,7 +99,7 @@ const LandingPage = () => {
                   sx={{
                     fontSize: { xs: "0.875rem", md: "1rem" },
                     fontWeight: 400,
-                    lineHeight: { xs: 1.4, md: 1.4 },
+                    lineHeight: { xs: 1.4, md: 1.4 }
                   }}
                 >
                   Express your taste buds with the favourite Tiffin services in
@@ -171,6 +171,9 @@ const LandingPage = () => {
           md={6}
           sx={{ display: { xs: "none", md: "flex" } }}
         ></Grid>
+      </Grid>
+      <Grid>
+
       </Grid>
     </Container>
   );
