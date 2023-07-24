@@ -47,7 +47,7 @@ export const Header = () => {
       userAuth?.role === "Customer" ? (<Grid className="menu-area">
       <div className="rts-menu-area">
         <Link to="/" className="logo">
-          <img src="images/logo-nb1.png" alt="logo" className="img-logo" />
+          <img src="/images/logo-nb1.png" alt="logo" className="img-logo" />
         </Link>
 
         <ul className="nav-menu mb-0">

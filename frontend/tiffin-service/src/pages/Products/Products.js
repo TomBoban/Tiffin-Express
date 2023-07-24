@@ -30,7 +30,6 @@ export const Products = () => {
   const getProducts = useSelector((state) => state.productReducer.getProducts);
   const [page, setPage] = useState(1);
 
-  console.log(getProducts,"getProducts");
   const itemsPerPage = 9;
 
   useEffect(() => {
@@ -196,12 +195,12 @@ export const Products = () => {
                     onClick={() => onCardClick(item._id)}
                   >
                     <CardMedia
-                        image={item?.image}
-                       
+                      image={`http://localhost:5000/${item.image}`}
                       component="img"
                       height="200"
                     />
-                    
+                   
+
                     <CardContent>
                       <Typography variant="h5" component="div">
                         {item?.name}
