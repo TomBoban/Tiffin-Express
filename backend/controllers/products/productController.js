@@ -2,6 +2,10 @@ const asyncHandler = require("express-async-handler");
 const mongoose = require("mongoose");
 const Product = require("../../model/products/ProductModel");
 
+
+
+
+
 //@access: public
 
 exports.getAllProducts = asyncHandler(async (req, res) => {
@@ -47,44 +51,39 @@ exports.getSingleProduct = asyncHandler(async (req, res) => {
 //@desc:Create a single product
 //@access: private Admin post
 
-exports.createProduct = asyncHandler(async (req, res) => {
+exports.createProduct = async (req, res) => {
   try {
-    const {
-      name,
-      description,
-      shortDescription,
-      price,
-      rating,
-      category,
-      image,
-      menuOption1,
-      menuOption2,
-      menuOption3
-    } = req.body;
+  
+      const { name, description, shortDescription, price, rating, category, menuOption1, menuOption2, menuOption3 } = req.body;
+     
+      console.log(req.file,"req.file");
 
-    const product = new Product({
-      user: req.user._id,
-      name,
-      image,
-      description,
-      shortDescription,
-      price,
-      rating,
-      category,
-      menuOption1,
-      menuOption2,
-      menuOption3
-    });
+      const image = req.file ? req.file.path.replace(/\\/g, '/') : "";
+ 
+      const product = new Product({
+        user: req.user._id,
+        name,
+        image, 
+        description,
+        shortDescription,
+        price,
+        rating,
+        category,
+        menuOption1,
+        menuOption2,
+        menuOption3,
+      });
 
-    // Save the product to the database
-    const createdProduct = await product.save();
+      // Save the product to the database
+      const createdProduct = await product.save();
 
-    res.status(201).json(createdProduct);
+      res.status(201).json(createdProduct);
+
   } catch (error) {
     console.error(error);
-    res.status(500).json({ message: "Failed to create product" });
+    res.status(500).json({ message: 'Failed to create product' });
   }
-});
+};
 
 // Update
 
@@ -104,6 +103,7 @@ exports.updateProduct = asyncHandler(async (req, res) => {
     } = req.body;
 
     const productId = req.params.id;
+    
 
     // Find the product by ID
     const product = await Product.findById(productId);

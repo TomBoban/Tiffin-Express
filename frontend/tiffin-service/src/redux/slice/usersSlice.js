@@ -141,6 +141,7 @@ const userSlices = createSlice({
     clearLoginData: (state) => {
       state.appErr = undefined;
       state.serverErr = undefined;
+      state.isRegistered= false;
     },
   },
   extraReducers: (builder) => {
