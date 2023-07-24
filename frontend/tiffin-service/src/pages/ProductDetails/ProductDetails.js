@@ -41,7 +41,8 @@ export const ProductDetails = () => {
       <div className="product-detail-container">
         <div>
           <div className="image-container">
-            <img src={prodList?.image} alt="" className="product-detail-image" />
+            <img src={`http://localhost:5000/${prodList?.image}`} alt="" className="product-detail-image" />
+            
           </div>
           <div className="small-images-container">
             {/* {image?.map((item, i) => (

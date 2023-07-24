@@ -10,7 +10,7 @@ import { logoutAction } from '../../redux/slice/usersSlice';
 
 
 const Sidebar = () => {
-
+  const userAuth = useSelector((state) => state.userReducer.userAuth);
   const history = useHistory();
   const dispatch = useDispatch();
 
@@ -42,12 +42,12 @@ const Sidebar = () => {
           <ListItemText primary="Create Service" />
         </ListItem>
        </Link>
-      <Link to="#"  className="link_options">
+      <Link to={`/profile/${userAuth?._id}`}  className="link_options">
       <ListItem button  >
           <ListItemIcon>
             <DonutLarge className='icons_label' />
           </ListItemIcon>
-          <ListItemText primary="Update Service" />
+          <ListItemText primary="Profile" />
         </ListItem>
       </Link>
      
