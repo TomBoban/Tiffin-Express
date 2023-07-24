@@ -56,24 +56,40 @@ export const getSingleProduct = createAsyncThunk(
 export const createProduct = createAsyncThunk(
   "products/create",
   async (productData, { rejectWithValue, getState, dispatch }) => {
+    const user = getState()?.userReducer
+    const { userAuth } = user;
     const config = {
       headers: {
-        "Content-Type": "application/json",
+        Authorization: `Bearer ${userAuth?.token}`,
       },
     };
-
+    console.log(productData.productData,"val");
+    const formData = new FormData();
+    formData.append("name", productData?.productData?.name);
+    formData.append("description", productData?.productData?.description);
+    formData.append("shortDescription", productData?.productData?.shortDescription);
+    formData.append("price", productData?.productData?.price);
+    formData.append("menuOption1", productData?.productData?.menuOption1);
+    formData.append("menuOption2", productData?.productData?.menuOption2);
+    formData.append("menuOption3", productData?.productData?.menuOption3);
+    formData.append("image", productData?.productData?.image);
+   
+    console.log(formData,"formData");
     try {
       const { data } = await axios.post(
         `${baseUrl}/api/products`,
-        productData,
+        formData,
         config
       );
+     
       //save the user into local storage
 
       return data;
     } catch (error) {
       if (!error?.response) {
+        console.log(error,"error");
         throw error;
+       
       }
       return rejectWithValue(error?.response?.data);
     }

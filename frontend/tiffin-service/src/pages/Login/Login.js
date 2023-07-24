@@ -37,6 +37,9 @@ export const Login = () => {
   });
 
   useEffect(() => {
+    if (appErr || serverErr) {
+      toast.error(appErr); 
+    }
     
     if (userAuth?.role === "Customer") {
      
@@ -48,7 +51,7 @@ export const Login = () => {
     else {
       dispatch(clearLoginData());
     }
-  }, [dispatch, history, userAuth]);
+  }, [appErr, dispatch, history, serverErr, userAuth]);
 
   return (
     <Grid
@@ -77,7 +80,7 @@ export const Login = () => {
               <img src="images/tf-logo.png" alt="logo" />
             </Link>
 
-            {appErr || serverErr ? toast.error(appErr) : null}
+           
             <form onSubmit={formik.handleSubmit}>
               <div className="form-group form-box">
                 <input
