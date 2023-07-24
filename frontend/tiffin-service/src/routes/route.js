@@ -14,6 +14,7 @@ import { ServiceDashboard } from "../pages/ServiceDashboard/ServiceDashboard";
 
 import { useSelector } from "react-redux";
 import CreateService from "../pages/Services/CreateService/CreateService";
+import { AdminDash } from "../pages/AdminDashboard/AdminDash";
 
 export const MainRoutes = () => {
   const storeData = useSelector((store) => store.userReducer);
@@ -33,6 +34,7 @@ export const MainRoutes = () => {
         <Route exact path="/profile/:id" component={Profile} />
         <Route exact path="/service/dashboard" component={ServiceDashboard} />
         <Route exact path="/service/create-service" component={CreateService} />
+        <Route exact path="/admin/dashboard" component={AdminDash}/>
       </Switch>
 
     </div>
