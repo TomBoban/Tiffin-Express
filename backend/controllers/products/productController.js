@@ -58,12 +58,13 @@ exports.createProduct = async (req, res) => {
      
       console.log(req.file,"req.file");
 
-      const image = req.file ? req.file.path.replace(/\\/g, '/') : "";
- 
+       const image = req.file ? req.file.path.replace(/\\/g, '/') : "";
+       const imagePath = image.replace("public", "");
+
       const product = new Product({
         user: req.user._id,
         name,
-        image, 
+        image:imagePath, 
         description,
         shortDescription,
         price,
