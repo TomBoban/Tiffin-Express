@@ -1,12 +1,12 @@
 import React from 'react';
 
 import {  List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
-import { Dashboard, ShoppingBag, DonutLarge, Logout } from '@mui/icons-material';
+import { Dashboard, ShoppingBag,Logout } from '@mui/icons-material';
 import { Link } from "react-router-dom";
-import './Sidebar.css'
 import { useDispatch, useSelector } from "react-redux";
 import { useHistory } from "react-router-dom";
-import { logoutAction } from '../../redux/slice/usersSlice';
+import { logoutAction } from '../../../redux/slice/usersSlice';
+
 
 
 const AdminSidebar = () => {
@@ -34,7 +34,7 @@ const AdminSidebar = () => {
           <ListItemText primary="Dashboard" />
         </ListItem>
       </Link>
-       <Link to="#" className="link_options">
+       <Link to="/admin/service-list" className="link_options">
        <ListItem button  >
           <ListItemIcon>
             <ShoppingBag className='icons_label' />

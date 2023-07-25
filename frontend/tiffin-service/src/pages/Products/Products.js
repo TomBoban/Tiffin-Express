@@ -17,7 +17,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllProducts } from "../../redux/slice/productsSlice";
 import { AiFillStar, AiOutlineStar } from "react-icons/ai";
 import { BsSearch } from "react-icons/bs";
-import { Link, useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 import "./Products.css";
 

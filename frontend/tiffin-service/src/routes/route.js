@@ -15,6 +15,8 @@ import { ServiceDashboard } from "../pages/ServiceDashboard/ServiceDashboard";
 import { useSelector } from "react-redux";
 import CreateService from "../pages/Services/CreateService/CreateService";
 import { AdminDash } from "../pages/AdminDashboard/AdminDash";
+import ServiceList from "../pages/Admin/ServiceList/ServiceList";
+
 
 export const MainRoutes = () => {
   const storeData = useSelector((store) => store.userReducer);
@@ -23,7 +25,7 @@ export const MainRoutes = () => {
     <BrowserRouter>
     <div className="wrapper">
     <Header />
-    <div className={userAuth?.role === "Customer" ? "content" : userAuth?.role === "Service" ? "content2" : "content"}>
+    <div className={userAuth?.role === "Customer" ? "content" : userAuth?.role === "Service" ? "content2" : userAuth?.role === "Admin" ? "content2" :"content"}>
     <Switch>
         <Route exact path="/" component={LandingPage} />
         <Route exact path="/login" component={Login} />
@@ -35,10 +37,11 @@ export const MainRoutes = () => {
         <Route exact path="/service/dashboard" component={ServiceDashboard} />
         <Route exact path="/service/create-service" component={CreateService} />
         <Route exact path="/admin/dashboard" component={AdminDash}/>
+        <Route exact path="/admin/service-list" component={ServiceList}/>
       </Switch>
 
     </div>
-    <div className={userAuth?.role === "Customer" ? "footer" : userAuth?.role === "Service" ? "footer2" : "footer"}>
+    <div className={userAuth?.role === "Customer" ? "footer" : userAuth?.role === "Service" ? "footer2" : "footer2"}>
     <Footer />
     </div>
       

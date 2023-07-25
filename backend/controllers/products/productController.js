@@ -10,7 +10,7 @@ const Product = require("../../model/products/ProductModel");
 
 exports.getAllProducts = asyncHandler(async (req, res) => {
   try {
-    const products = await Product.find({}).populate("category", "name").exec();
+    const products = await Product.find({}).populate("category", "name").populate("user").exec();
 
     if (products) {
       res.json(products);
