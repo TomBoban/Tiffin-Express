@@ -7,6 +7,7 @@ import { useHistory } from "react-router-dom";
 import { logoutAction } from "../../redux/slice/usersSlice";
 import Dropdown from "react-dropdown-select";
 import { ServiceNavbar } from "./ServiceNavbar/ServiceNavbar";
+import AdminSidebar from "./AdminNavbar/AdminNavbar";
 
 export const Header = () => {
   const userAuth = useSelector((state) => state.userReducer.userAuth);
@@ -81,7 +82,10 @@ export const Header = () => {
       </div>
     </Grid>) : userAuth?.role === "Service" ? (
       <ServiceNavbar/>
-    ) : (
+    ) : userAuth?.role === "Admin" ? (
+      <AdminSidebar/>
+    ) 
+    : (
       <Grid className="menu-area">
       <div className="rts-menu-area">
         <Link to="/" className="logo">

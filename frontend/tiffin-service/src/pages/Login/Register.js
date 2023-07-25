@@ -1,6 +1,6 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "./Login.css";
-import { Grid } from "@mui/material";
+import { Grid, MenuItem, Select } from "@mui/material";
 import { Link, useHistory } from "react-router-dom";
 import { useFormik } from "formik";
 import * as Yup from "yup";
@@ -20,6 +20,7 @@ export const Register = () => {
   const history = useHistory();
   const storeData = useSelector((store) => store.userReducer);
   const { loading, isRegistered, appErr, serverErr } = storeData;
+  
 
   const formik = useFormik({
     initialValues: {
@@ -27,6 +28,7 @@ export const Register = () => {
       lastName: "",
       email: "",
       password: "",
+      role:""
     },
     onSubmit: (values) => {
       dispatch(registerUserAction(values));
@@ -119,6 +121,21 @@ export const Register = () => {
                   autoComplete="off"
                   placeholder="Password"
                 />
+              </div>
+              <div className="form-group form-box">
+                <Select
+                
+                  value={formik.values.role}
+                  onChange={formik.handleChange("role")}
+                  displayEmpty
+                  className="form-control"
+                >
+                <MenuItem value="" disabled>
+                    Select role type
+                  </MenuItem>
+                  <MenuItem value="Customer">Customer</MenuItem>
+                  <MenuItem value="Service">Service</MenuItem>
+                </Select>
               </div>
               <div className="form-group form-box checkbox clearfix">
                 <div className="form-check checkbox-theme">
