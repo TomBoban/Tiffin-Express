@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./CreateService.css";
 import {
   Button,
   Grid,
   InputLabel,
+  MenuItem,
+  Select,
   Stack,
   TextField,
   Typography,
@@ -13,11 +15,14 @@ import * as Yup from "yup";
 import Dropzone from "react-dropzone";
 import { useDispatch, useSelector } from "react-redux";
 import { createProduct } from "../../../redux/slice/productsSlice";
+import { getAllCategories } from "../../../redux/slice/categorySlice";
+
 
 
 const INITIAL_FORM_STATE = {
   name: "",
   description: "",
+  category:"",
   shortDescription: "",
   price: "",
   menuOption1: "",
@@ -39,6 +44,16 @@ const CreateService = () => {
   const [file, setFile] = useState(null);
 const dispatch=useDispatch()
 
+useEffect(()=>{
+dispatch(getAllCategories())
+},[dispatch])
+
+
+const getCategory = useSelector((state) => state.categoryReducer.getCategory);
+
+
+
+
   const handleFileDrop = (acceptedFiles) => {
     setFile(acceptedFiles[0]);
   };
@@ -53,9 +68,12 @@ const dispatch=useDispatch()
   });
 
   const handleAddUsers = async (values) => {
+
+
     
     const productData = {
       name: values.name,
+      category:values.category,
       description: values.description,
       shortDescription: values.shortDescription,
       price: parseFloat(values.price),
@@ -64,9 +82,18 @@ const dispatch=useDispatch()
       menuOption3: values.menuOption3,
       image: values?.image,
     };
-  
+ 
     await dispatch(createProduct({productData}))
   };
+
+  const renderCategoryOptions = () => {
+    return getCategory?.map((category) => (
+      <MenuItem key={category._id} value={category._id}>
+        {category.name}
+      </MenuItem>
+    ));
+  };
+
 
   return (
     <form onSubmit={formik.handleSubmit} >
@@ -99,6 +126,27 @@ const dispatch=useDispatch()
                 error={formik.touched.name && Boolean(formik.errors.name)}
                 helperText={formik.touched.name && formik.errors.name}
               />
+            </Stack>
+          </Grid>
+          <Grid item xs={12} lg={12}>
+            <Stack spacing={1.25}>
+              <InputLabel sx={{ fontWeight: "700" }} htmlFor="email">
+                Category
+              </InputLabel>
+              <Select
+              name="category"
+              label="Category"
+              sx={{ width: "100%" }}
+              value={formik.values.category}
+              placeholder="Select Category"
+              onChange={formik.handleChange}
+              error={formik.touched.category && Boolean(formik.errors.category)}
+              labelId="category-label"
+              id="category"
+            >
+              {renderCategoryOptions()} 
+            </Select>
+              
             </Stack>
           </Grid>
           <Grid>

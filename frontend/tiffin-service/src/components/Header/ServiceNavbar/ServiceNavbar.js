@@ -1,45 +1,12 @@
-import { Grid } from "@mui/material";
+
 import React from "react";
-import { Link } from "react-router-dom";
+
 import "../Header.css";
-import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
-import { logoutAction } from "../../../redux/slice/usersSlice";
-import Dropdown from "react-dropdown-select";
+
 import Sidebar from "../../Sidebar/Sidebar";
 
 export const ServiceNavbar = () => {
-  const userAuth = useSelector((state) => state.userReducer.userAuth);
 
-  const history = useHistory();
-  const dispatch = useDispatch();
-
-  const logoutFn = async () => {
-    await dispatch(logoutAction());
-    history.push("/login");
-  };
-  const profileFn = async () => {
-    history.push(`/profile/${userAuth?._id}`);
-  };
-
-  const handleOptionSelect = (selectedOptions) => {
-    if (selectedOptions.length > 0) {
-      const selectedOption = selectedOptions[0].value;
-      if (selectedOption === "logout") {
-        logoutFn();
-      } else if (selectedOption === "profile") {
-        profileFn();
-      } else if (selectedOption === "username") {
-        // Handle username click
-      }
-    }
-  };
-
-  const dropdownOptions = [
-    { value: "profile", label: "Profile" },
-
-    { value: "logout", label: "Logout" },
-  ];
 
   return (
     <>

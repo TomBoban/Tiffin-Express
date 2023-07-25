@@ -56,14 +56,15 @@ exports.createProduct = async (req, res) => {
   
       const { name, description, shortDescription, price, rating, category, menuOption1, menuOption2, menuOption3 } = req.body;
      
-      console.log(req.file,"req.file");
+      console.log(category,"category");
 
-      const image = req.file ? req.file.path.replace(/\\/g, '/') : "";
- 
+       const image = req.file ? req.file.path.replace(/\\/g, '/') : "";
+       const imagePath = image.replace("public", "");
+
       const product = new Product({
         user: req.user._id,
         name,
-        image, 
+        image:imagePath, 
         description,
         shortDescription,
         price,
@@ -74,7 +75,6 @@ exports.createProduct = async (req, res) => {
         menuOption3,
       });
 
-      // Save the product to the database
       const createdProduct = await product.save();
 
       res.status(201).json(createdProduct);

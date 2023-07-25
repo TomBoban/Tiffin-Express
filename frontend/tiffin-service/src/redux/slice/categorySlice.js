@@ -3,7 +3,7 @@ import axios from "axios";
 import { baseUrl } from "../../utils/baseUrl";
 
 // Get all  Products action
-export const getAllProducts = createAsyncThunk("products/getAll", async () => {
+export const getAllCategories = createAsyncThunk("category/getAll", async () => {
   const config = {
     headers: {
       "Content-Type": "application/json",
@@ -11,10 +11,11 @@ export const getAllProducts = createAsyncThunk("products/getAll", async () => {
   };
   try {
     const res = await axios.get(
-      `${baseUrl}/api/products`,
+      `${baseUrl}/api/category`,
 
       config
     );
+
 
     return res.data;
   } catch (error) {
@@ -66,7 +67,6 @@ export const createProduct = createAsyncThunk(
     console.log(productData.productData,"val");
     const formData = new FormData();
     formData.append("name", productData?.productData?.name);
-    formData.append("category", productData?.productData?.category);
     formData.append("description", productData?.productData?.description);
     formData.append("shortDescription", productData?.productData?.shortDescription);
     formData.append("price", productData?.productData?.price);
@@ -99,36 +99,36 @@ export const createProduct = createAsyncThunk(
 
 //Slices(reducers)
 
-const productSlices = createSlice({
+const categoryReducer = createSlice({
   name: "products",
   initialState: {
-    getProducts: null,
+    getCategory: null,
     singleProduct: null,
     createProduct: null,
   },
   reducers: {
     clearProductsData: (state) => {
-      state.getProducts = null;
+      state.getCategory = null;
       state.singleProduct = null;
       state.appErr = undefined;
       state.serverErr = undefined;
     },
   },
   extraReducers: (builder) => {
-    //Get All Products
+    //Get All Category
 
-    builder.addCase(getAllProducts.pending, (state, action) => {
+    builder.addCase(getAllCategories.pending, (state, action) => {
       state.loading = true;
       state.appErr = undefined;
       state.serverErr = undefined;
     });
-    builder.addCase(getAllProducts.fulfilled, (state, action) => {
+    builder.addCase(getAllCategories.fulfilled, (state, action) => {
       state.loading = false;
-      state.getProducts = action?.payload;
+      state.getCategory = action?.payload;
       state.appErr = undefined;
       state.serverErr = undefined;
     });
-    builder.addCase(getAllProducts.rejected, (state, action) => {
+    builder.addCase(getAllCategories.rejected, (state, action) => {
       state.loading = false;
       state.appErr = action?.payload?.message;
       state.serverErr = action?.error?.message;
@@ -176,5 +176,5 @@ const productSlices = createSlice({
   },
 });
 
-export const { clearProductsData } = productSlices.actions;
-export default productSlices.reducer;
+export const { clearProductsData } = categoryReducer.actions;
+export default categoryReducer.reducer;
