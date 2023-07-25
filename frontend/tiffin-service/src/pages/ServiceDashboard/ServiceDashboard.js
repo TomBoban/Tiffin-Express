@@ -1,12 +1,13 @@
 import React from 'react'
 import './Service.css'
-
-import { Grid } from '@mui/material'
+import MainDash from './MainDash/MainDash';
 
 export const ServiceDashboard = () => {
   return (
-    <Grid>
-      Dashboard
-    </Grid>
+    <div className="App">
+    <div className="AppGlass">
+      <MainDash />
+    </div>
+  </div>
   )
 }
