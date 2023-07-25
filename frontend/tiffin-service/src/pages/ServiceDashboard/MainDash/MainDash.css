@@ -1,0 +1,42 @@
+.MainDash{
+    /* padding-top: 1rem; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+
+.welcome {
+    display: flex;
+    text-shadow: #3F2305;
+    justify-content: center;
+    font-style: bold;
+    font-weight: 500;
+    color: #3F2305;
+}
+h3{
+    display: flex;
+    justify-content: center;
+}
+
+.descr {
+    display: flex;
+    margin-left: 10px;
+    margin-right: 10px;
+    text-align: justify;
+    
+}
+
+@media screen and (max-width: 1200px) {
+    .MainDash{
+        padding: 2.5px;
+        justify-content:flex-start;
+        margin-top: 2rem;
+    }
+}
+
+@media screen and (max-width: 768px)
+{
+    .MainDash{
+        align-items: center;
+    }
+}
