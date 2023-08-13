@@ -34,7 +34,7 @@ exports.getSingleProduct = asyncHandler(async (req, res) => {
     }
 
     const product = await Product.findById(id)
-      .populate("category", "name")
+      .populate("category","name").populate("comments")
       .exec();
 
     if (product) {

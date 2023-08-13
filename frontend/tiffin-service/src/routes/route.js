@@ -16,6 +16,7 @@ import { useSelector } from "react-redux";
 import CreateService from "../pages/Services/CreateService/CreateService";
 import { AdminDash } from "../pages/AdminDashboard/AdminDash";
 import ServiceList from "../pages/Admin/ServiceList/ServiceList";
+import { Cart } from "../pages/Cart/Cart";
 
 
 export const MainRoutes = () => {
@@ -34,6 +35,7 @@ export const MainRoutes = () => {
         <Route exact path="/products" component={Products} />
         <Route exact path="/products/:id" component={ProductDetails} />
         <Route exact path="/profile/:id" component={Profile} />
+        <Route exact path="/cart" component={Cart} />
         <Route exact path="/service/dashboard" component={ServiceDashboard} />
         <Route exact path="/service/create-service" component={CreateService} />
         <Route exact path="/admin/dashboard" component={AdminDash}/>

@@ -58,6 +58,9 @@ export const Header = () => {
           <Link to="/aboutus" className="log_link">
             <li>About Us</li>
           </Link>
+          <Link to="/cart" className="log_link">
+            <li>Cart</li>
+          </Link>
           {userAuth ? (
             <div className="dropdown-container">
               <Dropdown
@@ -99,6 +102,7 @@ export const Header = () => {
           <Link to="/aboutus" className="log_link">
             <li>About Us</li>
           </Link>
+         
           {userAuth ? (
             <div className="dropdown-container">
               <Dropdown

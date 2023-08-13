@@ -58,23 +58,36 @@ const productSchema = mongoose.Schema(
     ],
     menuOption1: {
       type: String,
-     default:"Meal Plan not ready"
+      default: "Meal Plan not ready",
     },
     menuOption2: {
       type: String,
-      default:"Meal Plan not ready"
-    
+      default: "Meal Plan not ready",
     },
     menuOption3: {
-        type: String,
-        default:"Meal Plan not ready"
-    
-      },
+      type: String,
+      default: "Meal Plan not ready",
+    },
   },
   {
+    // convert all ids to json
+    toJSON: {
+      virtuals: true,
+    },
+    toObject: {
+      virtuals: true,
+    },
     timestamps: true,
   }
 );
+
+//populate comments
+productSchema.virtual("comments", {
+  ref: "Comment",
+  foreignField: "post",
+  localField: "_id",
+  justOne: false,
+});
 
 // We need to create model from schema
 const Product = mongoose.model("Product", productSchema);

@@ -30,6 +30,8 @@ export const Products = () => {
   const getProducts = useSelector((state) => state.productReducer.getProducts);
   const [page, setPage] = useState(1);
 
+  
+
   const itemsPerPage = 9;
 
   useEffect(() => {
