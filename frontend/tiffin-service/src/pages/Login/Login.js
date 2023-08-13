@@ -93,6 +93,7 @@ export const Login = () => {
                   className="form-control"
                   placeholder="Email Address"
                   required
+                  
                 />
               </div>
 

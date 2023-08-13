@@ -1,18 +1,25 @@
 import "./ProductDetails.css";
 import React, { useEffect, useState } from "react";
-import { CircularProgress, Grid, Paper,CardMedia } from "@mui/material";
+import { CircularProgress, Grid, Paper, CardMedia } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { getSingleProduct } from "../../redux/slice/productsSlice";
 import { Link, useParams, useHistory } from "react-router-dom";
-import { AiFillStar, AiOutlineStar } from 'react-icons/ai';
-import {FaUtensils} from "react-icons/fa6";
+import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+import { FaUtensils } from "react-icons/fa6";
+import { addToCartSlice } from "../../redux/slice/cartSlice";
+import { toast } from "react-toastify";
+import AddComment from "../Comments/AddComment";
+import CommentsList from "../Comments/CommentsList";
 
 export const ProductDetails = () => {
   const dispatch = useDispatch();
   const [prodList, setProdList] = useState([]);
+  const [showViewCart, setShowViewCart] = useState(false);
   const singleProduct = useSelector(
     (state) => state.productReducer.singleProduct
   );
+  const user = useSelector((state) => state?.userReducer);
+  const { userAuth } = user;
 
   const { id } = useParams();
 
@@ -26,7 +33,27 @@ export const ProductDetails = () => {
     }
   }, [singleProduct, prodList]);
 
-  console.log(prodList, "prodList");
+
+  const handleCartClick = () => {
+    const cartData = {
+      productId: prodList?._id,
+      quantity: 1,
+    };
+    dispatch(addToCartSlice(cartData));
+
+    toast.success("Service added successfully", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+      toastId: "success1",
+    });
+    setShowViewCart(true);
+  };
 
   return (
     <Grid container spacing={2}>
@@ -35,73 +62,82 @@ export const ProductDetails = () => {
           <CircularProgress />
         ) : (
           <>
-           
-
-    <div>
-      <div className="product-detail-container">
-        <div>
-          <div className="image-container">
-            <img src={`http://localhost:5000/${prodList?.image}`} alt="" className="product-detail-image" />
-            
-          </div>
-          <div className="small-images-container">
-            {/* {image?.map((item, i) => (
-              <img 
-                key={i}
-                src={urlFor(item)}
-                className={i === index ? 'small-image selected-image' : 'small-image'}
-                onMouseEnter={() => setIndex(i)}
-              />
-            ))} */}
-          </div>
-        </div>
-
-        <div className="product-detail-desc">
-          <h1>{prodList?.name}</h1>
-          <div className="reviews">
             <div>
-              <AiFillStar />
-              <AiFillStar />
-              <AiFillStar />
-              <AiFillStar />
-              <AiOutlineStar />
-            </div>
-            <p>
-              (20)
-            </p>
-          </div>
-          <h4>Description: </h4>
-          <p>{prodList?.description}</p>
-          <p className="price">Price: ${prodList?.price}</p>
-          <h4>Menu: </h4>
-          <p className="menuOpt"><span className="menu-icon"><FaUtensils /></span><b>Menu 1: </b>{prodList?.menuOption1}</p>
-          <p className="menuOpt"><span className="menu-icon"><FaUtensils /></span><b>Menu 2: </b>{prodList?.menuOption2}</p>
-          <p className="menuOpt"><span className="menu-icon"><FaUtensils /></span><b>Menu 3: </b>{prodList?.menuOption3}</p>
-          {/* <div className="quantity">
-            <h3>Quantity:</h3>
-            <p className="quantity-desc">
-              <span className="minus" onClick={decQty}><AiOutlineMinus /></span>
-              <span className="num">{qty}</span>
-              <span className="plus" onClick={incQty}><AiOutlinePlus /></span>
-            </p>
-          </div> */}
-          <div className="buttons">
-            <button type="button" className="add-to-cart" >Subscribe</button>
-          </div>
-        </div>
-      </div>
+              <div className="product-detail-container">
+                <div>
+                  <div className="image-container">
+                    <img
+                      src={`http://localhost:5000/${prodList?.image}`}
+                      alt=""
+                      className="product-detail-image"
+                    />
+                  </div>
+                  <div className="small-images-container">
+                  <div className="flex justify-center  items-center">
+                      <CommentsList postId={id}  comments={prodList?.comments} />
+                    </div>
+                    {userAuth && <AddComment postId={id} />}
+                   
+                  </div>
+                </div>
 
-      {/* <div className="maylike-products-wrapper">
-          <h2>You may also like</h2>
-          <div className="marquee">
-            <div className="maylike-products-container track">
-              {products.map((item) => (
-                <Product key={item._id} product={item} />
-              ))}
+                <div className="product-detail-desc">
+                  <h1>{prodList?.name}</h1>
+                  <div className="reviews">
+                    <div>
+                      <AiFillStar />
+                      <AiFillStar />
+                      <AiFillStar />
+                      <AiFillStar />
+                      <AiOutlineStar />
+                    </div>
+                    <p>(20)</p>
+                  </div>
+                  <h4>Description: </h4>
+                  <p>{prodList?.description}</p>
+                  <p className="price">Price: ${prodList?.price}</p>
+                  <h4>Menu: </h4>
+                  <p className="menuOpt">
+                    <span className="menu-icon">
+                      <FaUtensils />
+                    </span>
+                    <b>Menu 1: </b>
+                    {prodList?.menuOption1}
+                  </p>
+                  <p className="menuOpt">
+                    <span className="menu-icon">
+                      <FaUtensils />
+                    </span>
+                    <b>Menu 2: </b>
+                    {prodList?.menuOption2}
+                  </p>
+                  <p className="menuOpt">
+                    <span className="menu-icon">
+                      <FaUtensils />
+                    </span>
+                    <b>Menu 3: </b>
+                    {prodList?.menuOption3}
+                  </p>
+
+                  <div className="buttons_tog">
+                    <button
+                      onClick={handleCartClick}
+                      type="button"
+                      className="add-to-cart"
+                    >
+                      Subscribe
+                    </button>
+                    {showViewCart && (
+                      <Link className="viewBtn" to="/cart">
+                        <button type="button" className="add-to-cart">
+                          View Cart
+                        </button>
+                      </Link>
+                    )}
+                  </div>
+                </div>
+              </div>
             </div>
-          </div>
-      </div> */}
-    </div>
           </>
         )}
       </Grid>

@@ -8,7 +8,7 @@ export const Footer = () => {
             <div className='container-footer'>
                 <div className='row p-0 m-0'>
                 <div className="col foot-1">
-                        <img src="images/logo-nb1.png" alt="logo" className="img-logo" />
+                        <img src="/images/logo-nb1.png" alt="logo" className="img-logo" />
                         <p>The best tiffin service in the Waterloo.<br/> Grab new offers and register now!<br/>
                            Subscribe, Eat, Enjoy!<br/></p>
                     </div>
