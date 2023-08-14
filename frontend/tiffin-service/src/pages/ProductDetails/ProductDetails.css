@@ -34,6 +34,19 @@
   align-items: center;
 }
 
+.service_owner{
+  margin-top: 10px;
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+
+.srv_name{
+  color: #000;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
 .product-detail-desc {
   background-color: #fff !important;
   border: 1px solid rgb(230, 235, 241);
@@ -54,10 +67,19 @@
   color: #324d67;
   margin-top: 0px;
 }
+.srv_menu{
+  font-weight: 700;
+  font-size: 26px;
+  margin-top: 30px;
+  color: #324d67;
+}
 .product-detail-desc .price {
   font-weight: 700;
   font-size: 26px;
   margin-top: 30px;
+  color: #324d67;
+}
+.product-detail-desc .price label{
   color: #f02d34;
 }
 .buttons_tog .add-to-cart {
@@ -137,7 +159,7 @@ Commentd */
 }
 
 .cm_item2 {
-  width: 100%;
+
   display: flex;
   align-items: center;
   justify-content: end;

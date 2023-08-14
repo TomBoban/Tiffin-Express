@@ -34,7 +34,7 @@ exports.getSingleProduct = asyncHandler(async (req, res) => {
     }
 
     const product = await Product.findById(id)
-      .populate("category","name").populate("comments")
+      .populate("category","name").populate("comments").populate("user")
       .exec();
 
     if (product) {
@@ -56,7 +56,7 @@ exports.createProduct = async (req, res) => {
   
       const { name, description, shortDescription, price, rating, category, menuOption1, menuOption2, menuOption3 } = req.body;
      
-      console.log(category,"category");
+    
 
        const image = req.file ? req.file.path.replace(/\\/g, '/') : "";
        const imagePath = image.replace("public", "");

@@ -16,6 +16,7 @@ const cartItemSchema = mongoose.Schema({
     required: true,
     default: 1,
   },
+
 });
 
 const CartItem = mongoose.model("CartItem", cartItemSchema);

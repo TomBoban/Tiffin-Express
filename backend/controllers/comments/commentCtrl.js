@@ -6,7 +6,7 @@ const Comment = require("../../model/comment/commentModel");
 //create a comment
 const createCommentCtrl = expressAsyncHandler(async (req, res) => {
   const { postId, description,rating } = req.body;
-  console.log(postId, description ,"pp");
+ 
   const user = req.user;
   try {
     const comment = await Comment.create({
