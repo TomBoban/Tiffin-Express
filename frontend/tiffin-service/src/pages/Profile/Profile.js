@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import {
   Box,
   Button,
@@ -7,14 +7,14 @@ import {
   InputLabel,
   TextField,
   Typography,
-  useMediaQuery,
+
 } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import "./Profile.css";
 import { Stack } from "@mui/system";
 import { useFormik } from "formik";
-import * as Yup from "yup";
-import { Link, useHistory, useParams } from "react-router-dom";
+
+import { useHistory, useParams } from "react-router-dom";
 import {
   getSingleUserAction,
   updateUserInfo,

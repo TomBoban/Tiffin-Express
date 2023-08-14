@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, useHistory, useParams } from "react-router-dom";
 import {
   deletePaymentAction,
   getAllPayments,
@@ -20,10 +19,10 @@ import {
   Typography,
 } from "@mui/material";
 import "./UserService.css";
-import { toast } from "react-toastify";
+
 export const UserService = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
+ 
   const getPaymentDetails = useSelector(
     (state) => state.paymentReducer.getPaymentDetails
   );

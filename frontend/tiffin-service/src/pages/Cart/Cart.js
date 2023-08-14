@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Link, useParams, useHistory } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
   addToCartSlice,
@@ -24,9 +24,26 @@ export const Cart = () => {
   }, [dispatch]);
 
   useEffect(() => {
-    const total = calculateTotalAmount();
-    setTotalAmount(total);
+    const getTotal=()=>{
+      const calculateTotalAmount = () => {
+        let total = 0;
+        if (getCartData) {
+          total = getCartData.reduce((acc, cartItem) => {
+            return acc + cartItem?.product?.price * cartItem?.quantity;
+          }, 0);
+        }
+        return total;
+      };
+    
+    
+      const total = calculateTotalAmount();
+      setTotalAmount(total);
+    }
+    getTotal()
   }, [getCartData]);
+
+
+
 
   const handleAddToCart = async (item) => {
     const cartData = {
@@ -55,17 +72,7 @@ export const Cart = () => {
     await dispatch(getCartSlice());
   };
 
-  const calculateTotalAmount = () => {
-    let total = 0;
-    if (getCartData) {
-      total = getCartData.reduce((acc, cartItem) => {
-        return acc + cartItem?.product?.price * cartItem?.quantity;
-      }, 0);
-    }
-    return total;
-  };
 
-  console.log(totalAmount, "totalAmount");
 
   const filteredCartData = getCartData?.filter(
     (cartItem) => cartItem?.quantity > 0

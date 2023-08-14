@@ -1,14 +1,13 @@
 import React, { useCallback, useMemo, useState, useEffect } from "react";
 import { MaterialReactTable } from "material-react-table";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router-dom";
+
 import { getAllProducts } from "../../../redux/slice/productsSlice";
 import { Box, CircularProgress, IconButton, Tooltip } from "@mui/material";
-import { Delete, Edit } from "@mui/icons-material";
+import { Delete } from "@mui/icons-material";
 
 const ServiceList = () => {
   const dispatch = useDispatch();
-  const history = useHistory();
   const getProducts = useSelector((state) => state.productReducer.getProducts);
 
   const [tableData, setTableData] = useState([]);

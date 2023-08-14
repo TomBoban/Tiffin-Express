@@ -3,7 +3,7 @@ import { useFormik } from "formik";
 import * as Yup from "yup";
 import { useDispatch } from "react-redux";
 import { createCommentAction } from "../../redux/slice/commentSlice";
-import { Button, Input, TextareaAutosize } from "@mui/material";
+import { Button, TextareaAutosize } from "@mui/material";
 import { getSingleProduct } from "../../redux/slice/productsSlice";
 import StarRating from "./StarRating"; // Import the StarRating component
 
