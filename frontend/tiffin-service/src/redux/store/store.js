@@ -3,7 +3,7 @@ import getuserReducer from "../slice/usersSlice";
 import getProductReducer from "../slice/productsSlice";
 import getCategoryReducer from "../slice/categorySlice";
 import getCartReducer from "../slice/cartSlice";
-import getPaymentReducer from "../slice/cartSlice";
+import getPaymentReducer from "../slice/paymentSlice";
 
 const store = configureStore({
   reducer: {

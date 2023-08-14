@@ -1,13 +1,12 @@
-
 const Payment = require("../../model/payment/paymentModel");
 const Product = require("../../model/products/ProductModel");
-const stripe = require("stripe")("sk_test_51NapXvJXDHCrMxsTiMs1uX3PCo22LUcR2PLfOYlyWlAtDLG1IqwscoWFupLsE71iqr5cCQpvJGKmEIXpHUzspyLw00jm95qoTQ");
+const stripe = require("stripe")(
+  "sk_test_51NapXvJXDHCrMxsTiMs1uX3PCo22LUcR2PLfOYlyWlAtDLG1IqwscoWFupLsE71iqr5cCQpvJGKmEIXpHUzspyLw00jm95qoTQ"
+);
 const asyncHandler = require("express-async-handler");
-
 
 exports.createPayment = async (req, res) => {
   try {
-
     const { cart, total, token } = req.body;
 
     const { card } = token;
@@ -22,16 +21,14 @@ exports.createPayment = async (req, res) => {
 
     const paymentPromises = cart.map(async (cartItem) => {
       const product = await Product.findById(cartItem.product._id);
-    
+
       try {
         const charge = await stripe.charges.create({
           amount: cartItem.product.price * cartItem.quantity * 100,
           currency: "usd",
           receipt_email: token.email,
           source: token.id,
-          description: `Payment for ${cartItem.quantity} ${
-            cartItem.product.name
-          }(s) from eShop`,
+          description: `Payment for ${cartItem.quantity} ${cartItem.product.name}(s) from eShop`,
         });
 
         if (charge && charge.status === "succeeded") {
@@ -43,7 +40,6 @@ exports.createPayment = async (req, res) => {
 
           const paymentProduct = cart.map((item) => ({
             _id: item.product._id,
-           
           }));
 
           const context = {
@@ -53,15 +49,13 @@ exports.createPayment = async (req, res) => {
             reference: charge.id,
             transaction: charge.balance_transaction,
             shippingAddress,
-            totalAmount:req.body.total,
-            isSubscribed:true,
+            totalAmount: req.body.total,
+            isSubscribed: true,
             product: paymentProduct,
           };
 
           const payment = new Payment(context);
           await payment.save();
-
-                   
         }
       } catch (err) {
         console.error(err);
@@ -77,13 +71,14 @@ exports.createPayment = async (req, res) => {
   }
 };
 
-
-
 //@access: public
 
 exports.getPayments = asyncHandler(async (req, res) => {
   try {
-    const payments = await Payment.find({}).populate("user").populate("product").exec();
+    const payments = await Payment.find({})
+      .populate("user")
+      .populate("product")
+      .exec();
 
     if (payments) {
       res.json(payments);
@@ -93,5 +88,18 @@ exports.getPayments = asyncHandler(async (req, res) => {
   } catch (error) {
     console.error(error, "Error");
     res.status(500).json({ message: "Failed to get payments" });
+  }
+});
+
+//delete single comment
+exports.deletePayment = asyncHandler(async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const comment = await Payment.findByIdAndDelete(id);
+
+    res.json(comment);
+  } catch (error) {
+    res.json(error);
   }
 });
