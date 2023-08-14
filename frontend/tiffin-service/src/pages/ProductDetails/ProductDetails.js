@@ -4,7 +4,7 @@ import { CircularProgress, Grid, Paper, CardMedia } from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { getSingleProduct } from "../../redux/slice/productsSlice";
 import { Link, useParams, useHistory } from "react-router-dom";
-import { AiFillStar, AiOutlineStar } from "react-icons/ai";
+
 import { FaUtensils } from "react-icons/fa6";
 import { addToCartSlice } from "../../redux/slice/cartSlice";
 import { toast } from "react-toastify";

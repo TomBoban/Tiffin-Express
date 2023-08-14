@@ -104,7 +104,7 @@ export const clearCartSlice = createAsyncThunk(
 
     try {
       const { data } = await axios.delete(`${baseUrl}/api/cart/clear`, config);
-      console.log(data,"data");
+
 
       return data;
     } catch (error) {

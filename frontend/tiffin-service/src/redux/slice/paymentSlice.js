@@ -6,6 +6,7 @@ import { baseUrl } from "../../utils/baseUrl";
 export const getAllPayments = createAsyncThunk(
   "category/getAll",
   async (_, { rejectWithValue, getState, dispatch }) => {
+
     const user = getState()?.userReducer;
     const { userAuth } = user;
     const config = {
@@ -30,6 +31,39 @@ export const getAllPayments = createAsyncThunk(
   }
 );
 
+
+//delete Payment Service
+export const deletePaymentAction = createAsyncThunk(
+  "payment/delete",
+  async (commentId, { rejectWithValue, getState, dispatch }) => {
+
+    console.log(commentId,"commentId");
+    const user = getState()?.userReducer;
+    const { userAuth } = user;
+    const config = {
+      headers: {
+        Authorization: `Bearer ${userAuth?.token}`,
+      },
+    };
+    try {
+      const { data } = await axios.delete(
+        `${baseUrl}/api/payment/${commentId}`,
+        config
+      );
+
+      return data;
+    } catch (error) {
+      if (!error?.response) {
+        throw error;
+      }
+      return rejectWithValue(error?.response?.data);
+    }
+  }
+);
+
+
+
+
 //Slices(reducers)
 
 const paymentReducer = createSlice({
@@ -53,6 +87,24 @@ const paymentReducer = createSlice({
       state.serverErr = undefined;
     });
     builder.addCase(getAllPayments.rejected, (state, action) => {
+      state.loading = false;
+      state.appErr = action?.payload?.message;
+      state.serverErr = action?.error?.message;
+    });
+
+
+// Delete
+    builder.addCase(deletePaymentAction.pending, (state, action) => {
+      state.loading = true;
+      state.appErr = undefined;
+      state.serverErr = undefined;
+    });
+    builder.addCase(deletePaymentAction.fulfilled, (state, action) => {
+      state.loading = false;
+      state.appErr = undefined;
+      state.serverErr = undefined;
+    });
+    builder.addCase(deletePaymentAction.rejected, (state, action) => {
       state.loading = false;
       state.appErr = action?.payload?.message;
       state.serverErr = action?.error?.message;

@@ -19,6 +19,7 @@ import {
   getSingleUserAction,
   updateUserInfo,
 } from "../../redux/slice/usersSlice";
+import { toast } from "react-toastify";
 
 export const Profile = () => {
   const dispatch = useDispatch();
@@ -64,6 +65,18 @@ export const Profile = () => {
       role: values?.role,
     };
     await dispatch(updateUserInfo({ id, data }));
+    toast.success("Profile Updated Successfully", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+      toastId: "success1",
+    });
+
     if (userAuth?.role === "Service") {
       history.push(`/service/dashboard`);
     } else {
