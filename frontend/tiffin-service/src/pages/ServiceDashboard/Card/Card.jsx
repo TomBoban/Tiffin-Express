@@ -4,7 +4,6 @@ import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
 import { motion } from "framer-motion";
 import { UilTimes } from "@iconscout/react-unicons";
-import Chart from "react-apexcharts";
 import "../dashboardData/dashboardData";
 // parent Card
 
@@ -117,7 +116,7 @@ function ExpandedCard({ param, setExpanded }) {
       </div>
         <span>{param.title}</span>
       <div className="chartContainer">
-        <Chart options={data.options} series={param.series} type="area" />
+        {/* <Chart options={data.options} series={param.series} type="area" /> */}
       </div>
       <span>Last 24 hours</span>
     </motion.div>
