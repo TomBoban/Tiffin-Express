@@ -51,10 +51,10 @@ export default function CommentsList({ comments, postId }) {
                       style={{ display: "flex", gap: "1rem", width: "100%" }}
                     >
                       <div style={{ width: "10rem" }}>
-                        <h6>
+                        <h6 style={{fontSize:"0.9rem"}}>
                           {comment?.user?.firstName} {comment?.user?.lastName}
                         </h6>
-                        <p className="text-bold text-yellow-500 text-base ml-5">
+                        <p style={{fontSize:"0.8rem",marginBottom:"0rem"}}>
                           <Moment fromNow ago>
                             {comment?.createdAt}
                           </Moment>
@@ -67,7 +67,7 @@ export default function CommentsList({ comments, postId }) {
                         ))}
                       </div>
                       </div>
-                      <p className="text-sm text-gray-400">
+                      <p style={{width:"100%"}}>
                         {comment?.description}
                       </p>
                     

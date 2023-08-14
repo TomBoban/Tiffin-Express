@@ -8,8 +8,8 @@ const usersRoute = require("./routes/user/userRoutes");
 const productsRoute = require("./routes/products/productsRoute");
 const categoryRoute = require("./routes/category/categoryRoute");
 const cartRoute = require("./routes/cart/cartRoute");
-const orderRouter = require("./routes/order/orderRoutes");
 const commentRoutes = require("./routes/comments/commentRoute");
+const paymentRoute = require("./routes/payment/paymentRoute");
 
 
 
@@ -35,12 +35,8 @@ app.use("/api/users", usersRoute);
 app.use("/api/products", productsRoute);
 app.use("/api/category", categoryRoute);
 app.use("/api/cart", cartRoute);
-app.use("/api/orders", orderRouter);
 app.use("/api/comments", commentRoutes);
-
-app.get("/api/config/paypal", (req, res) =>
-  res.send(process.env.PAYPAL_CLIENT_ID)
-);
+app.use("/api/payment", paymentRoute)
 
 //server
 const PORT = process.env.PORT || 6000;

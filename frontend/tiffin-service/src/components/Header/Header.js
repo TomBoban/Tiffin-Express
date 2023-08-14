@@ -23,6 +23,14 @@ export const Header = () => {
     history.push(`/profile/${userAuth?._id}`);
   };
 
+  const userFn=async()=>{
+    history.push(`/products`);
+  }
+
+  const myServFn = async () => {
+    history.push(`/userservice/${userAuth?._id}`);
+  };
+
   const handleOptionSelect = (selectedOptions) => {
     if (selectedOptions.length > 0) {
       const selectedOption = selectedOptions[0].value;
@@ -30,14 +38,21 @@ export const Header = () => {
         logoutFn();
       } else if (selectedOption === "profile") {
         profileFn();
-      } else if (selectedOption === "username") {
-        // Handle username click
+      } else if (selectedOption === "MyServices") {
+        myServFn();
+      }
+      else  {
+        userFn()
       }
     }
   };
 
+  
+
   const dropdownOptions = [
+    { value: `${userAuth?.firstName} ${userAuth?.lastName}`, label: `${userAuth?.firstName} ${userAuth?.lastName}` },
     { value: "profile", label: "Profile" },
+    { value: "MyServices", label: "My Services" },
 
     { value: "logout", label: "Logout" },
   ];

@@ -33,6 +33,8 @@ export const ProductDetails = () => {
     }
   }, [singleProduct, prodList]);
 
+  console.log(singleProduct,"singleProduct");
+
 
   const handleCartClick = () => {
     const cartData = {
@@ -83,20 +85,15 @@ export const ProductDetails = () => {
 
                 <div className="product-detail-desc">
                   <h1>{prodList?.name}</h1>
-                  <div className="reviews">
-                    <div>
-                      <AiFillStar />
-                      <AiFillStar />
-                      <AiFillStar />
-                      <AiFillStar />
-                      <AiOutlineStar />
-                    </div>
-                    <p>(20)</p>
+                  <div className="service_owner">
+                   
+                  <h4>Service Owner: </h4>
+                  <div className="srv_name">{prodList?.user?.firstName} {prodList?.user?.lastName}</div>
                   </div>
                   <h4>Description: </h4>
                   <p>{prodList?.description}</p>
-                  <p className="price">Price: ${prodList?.price}</p>
-                  <h4>Menu: </h4>
+                  <p className="price">Price: <label> ${prodList?.price}</label></p>
+                  <h4 className="srv_menu">Menu: </h4>
                   <p className="menuOpt">
                     <span className="menu-icon">
                       <FaUtensils />
