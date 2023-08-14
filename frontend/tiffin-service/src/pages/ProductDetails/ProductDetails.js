@@ -1,9 +1,9 @@
 import "./ProductDetails.css";
 import React, { useEffect, useState } from "react";
-import { CircularProgress, Grid, Paper, CardMedia } from "@mui/material";
+import { CircularProgress, Grid} from "@mui/material";
 import { useDispatch, useSelector } from "react-redux";
 import { getSingleProduct } from "../../redux/slice/productsSlice";
-import { Link, useParams, useHistory } from "react-router-dom";
+import { Link, useParams } from "react-router-dom";
 
 import { FaUtensils } from "react-icons/fa6";
 import { addToCartSlice } from "../../redux/slice/cartSlice";
