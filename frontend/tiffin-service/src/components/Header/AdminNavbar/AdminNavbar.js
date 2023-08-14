@@ -3,14 +3,14 @@ import React from 'react';
 import {  List, ListItem, ListItemIcon, ListItemText } from '@mui/material';
 import { Dashboard, ShoppingBag,Logout } from '@mui/icons-material';
 import { Link } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { useHistory } from "react-router-dom";
 import { logoutAction } from '../../../redux/slice/usersSlice';
 
 
 
 const AdminSidebar = () => {
-  const userAuth = useSelector((state) => state.userReducer.userAuth);
+ 
   const history = useHistory();
   const dispatch = useDispatch();
 

@@ -1,7 +1,5 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { IconButton, Typography } from "@mui/material";
-import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
 import Moment from "react-moment";
 import { useDispatch, useSelector } from "react-redux";
