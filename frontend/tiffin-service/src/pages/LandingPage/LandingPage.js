@@ -3,7 +3,7 @@ import { Box, Button, Container, Grid, Typography } from "@mui/material";
 import "./LandingPage.css";
 
 import { motion } from "framer-motion";
-import { Link, useHistory } from "react-router-dom";
+import {  useHistory } from "react-router-dom";
 import { EyeOutlined } from "@ant-design/icons";
 import {FaUtensils} from "react-icons/fa";
 
