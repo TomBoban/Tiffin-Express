@@ -85,7 +85,7 @@ export const Cart = () => {
           fontWeight: "600",
         }}
       >
-        Shopping Cart
+       Service Cart
       </Typography>
 
       {getCartData === null ? ( // Check if getCartData is still null (initial state)
