@@ -16,7 +16,7 @@ import Dropzone from "react-dropzone";
 import { useDispatch, useSelector } from "react-redux";
 import { createProduct } from "../../../redux/slice/productsSlice";
 import { getAllCategories } from "../../../redux/slice/categorySlice";
-
+import { toast } from "react-toastify";
 
 
 const INITIAL_FORM_STATE = {
@@ -62,7 +62,7 @@ const getCategory = useSelector((state) => state.categoryReducer.getCategory);
     initialValues: INITIAL_FORM_STATE,
     validationSchema: FORM_VALIDATION,
     onSubmit: (values) => {
-      console.log("Form is being submitted");
+     
       handleAddUsers(values);
     },
   });
@@ -84,6 +84,18 @@ const getCategory = useSelector((state) => state.categoryReducer.getCategory);
     };
  
     await dispatch(createProduct({productData}))
+    toast.success("Product added successfully", {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "colored",
+      toastId: "success1",
+    });
+    formik.resetForm()
   };
 
   const renderCategoryOptions = () => {

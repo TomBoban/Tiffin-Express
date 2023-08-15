@@ -10,6 +10,7 @@ const categoryRoute = require("./routes/category/categoryRoute");
 const cartRoute = require("./routes/cart/cartRoute");
 const commentRoutes = require("./routes/comments/commentRoute");
 const paymentRoute = require("./routes/payment/paymentRoute");
+const notificationRouter = require("./routes/notification/notificationRoute");
 
 
 
@@ -37,6 +38,7 @@ app.use("/api/category", categoryRoute);
 app.use("/api/cart", cartRoute);
 app.use("/api/comments", commentRoutes);
 app.use("/api/payment", paymentRoute)
+app.use("/api/sms", notificationRouter);
 
 //server
 const PORT = process.env.PORT || 6000;

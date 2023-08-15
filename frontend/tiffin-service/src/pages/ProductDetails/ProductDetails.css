@@ -185,3 +185,10 @@ Commentd */
 .star-icon:hover {
   color: gold;          
 }
+
+.call_bck{
+  font-size: 1.5rem !important;
+  font-weight: 800 !important;
+  text-decoration: underline;
+  margin-top:"1rem"
+}
