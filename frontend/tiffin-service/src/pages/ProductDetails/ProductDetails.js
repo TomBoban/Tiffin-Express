@@ -79,16 +79,16 @@ export const ProductDetails = () => {
         },
         config
       );
-      // Handle success
+     
       toast.success("Message sent successfully", {
-        // ... (toast configuration)
+      
       });
-      setOpenModal(false); // Close the modal after sending the message
+      setOpenModal(false); 
     } catch (error) {
       // Handle error
       console.error("Error sending message: ", error);
       toast.error("Failed to send message", {
-        // ... (toast configuration)
+       
       });
     }
   };

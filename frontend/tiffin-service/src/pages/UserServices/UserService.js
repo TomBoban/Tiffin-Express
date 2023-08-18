@@ -1,11 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {
   deletePaymentAction,
   getAllPayments,
 } from "../../redux/slice/paymentSlice";
+import jspdf from "jspdf";
+import html2canvas from "html2canvas";
 import DeleteIcon from "@mui/icons-material/Delete";
-
 import {
   CircularProgress,
   IconButton,
@@ -19,10 +20,20 @@ import {
   Typography,
 } from "@mui/material";
 import "./UserService.css";
+import DescriptionIcon from "@mui/icons-material/Description";
+import {
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  Button,
+} from "@mui/material";
 
 export const UserService = () => {
   const dispatch = useDispatch();
- 
+  const [deleteDialogOpen, setDeleteDialogOpen] = useState(false);
+  const [itemToDelete, setItemToDelete] = useState(null);
+
   const getPaymentDetails = useSelector(
     (state) => state.paymentReducer.getPaymentDetails
   );
@@ -39,9 +50,24 @@ export const UserService = () => {
     }
   }, [getPaymentDetails]);
 
-  const handleDelete = async (id) => {
-    await dispatch(deletePaymentAction(id));
-    await dispatch(getAllPayments());
+  const downloadPDF = (transaction) => {
+    const pdf = new jspdf();
+
+    pdf.setFontSize(18);
+    pdf.text("Transaction Receipt", 105, 20, { align: "center" });
+
+    pdf.setFontSize(12);
+    pdf.text("Product Name", 155, 40);
+
+    pdf.text("Total Amount", 15, 40);
+    pdf.text("Transaction ID", 85, 40);
+
+    pdf.setFontSize(10);
+    pdf.text(transaction.product[0].name, 155, 50);
+    pdf.text(`$${transaction.totalAmount}`, 15, 50);
+    pdf.text(transaction.transaction, 85, 50);
+
+    pdf.save("transaction_receipt.pdf");
   };
 
   const columns = [
@@ -54,9 +80,19 @@ export const UserService = () => {
       id: "actions",
       name: "Actions",
       render: (row) => (
-        <IconButton onClick={() => handleDelete(row._id)}>
-          <DeleteIcon />
-        </IconButton>
+        <>
+          <IconButton
+            onClick={() => {
+              setItemToDelete(row._id);
+              setDeleteDialogOpen(true);
+            }}
+          >
+            <DeleteIcon />
+          </IconButton>
+          <IconButton onClick={() => downloadPDF(row)}>
+            <DescriptionIcon />
+          </IconButton>
+        </>
       ),
     },
   ];
@@ -73,7 +109,7 @@ export const UserService = () => {
             <Table stickyHeader>
               <TableHead>
                 <TableRow>
-                  {columns.map((column) => (
+                  {columns?.map((column) => (
                     <TableCell
                       style={{
                         backgroundColor: "rgb(56, 157, 236)",
@@ -89,16 +125,20 @@ export const UserService = () => {
               <TableBody>
                 {rows.length === 0 ? ( // Check if rows is empty
                   <TableRow>
-                    <TableCell colSpan={columns.length} align="center" sx={{fontSize:"1.5rem",padding:"2rem"}}>
+                    <TableCell
+                      colSpan={columns.length}
+                      align="center"
+                      sx={{ fontSize: "1.5rem", padding: "2rem" }}
+                    >
                       No services subscribed.
                     </TableCell>
                   </TableRow>
                 ) : (
-                  rows.map((payment, paymentIndex) => (
+                  rows?.map((payment, paymentIndex) => (
                     <React.Fragment key={paymentIndex}>
-                      {payment.product.map((product, productIndex) => (
+                      {payment?.product?.map((product, productIndex) => (
                         <TableRow key={paymentIndex + "_" + productIndex}>
-                          {columns.map((column) => {
+                          {columns?.map((column) => {
                             let value = product[column.id];
                             return (
                               <TableCell key={column.id}>
@@ -127,6 +167,29 @@ export const UserService = () => {
               </TableBody>
             </Table>
           </TableContainer>
+          <Dialog
+            open={deleteDialogOpen}
+            onClose={() => setDeleteDialogOpen(false)}
+          >
+            <DialogTitle>Confirm Delete</DialogTitle>
+            <DialogContent>
+              Are you sure you want to stop the subscription?
+            </DialogContent>
+            <DialogActions>
+              <Button onClick={() => setDeleteDialogOpen(false)}>Cancel</Button>
+              <Button
+                onClick={async () => {
+                  setDeleteDialogOpen(false);
+                  if (itemToDelete) {
+                    await dispatch(deletePaymentAction(itemToDelete));
+                    await dispatch(getAllPayments());
+                  }
+                }}
+              >
+                Stop Service
+              </Button>
+            </DialogActions>
+          </Dialog>
         </Paper>
       )}
     </div>

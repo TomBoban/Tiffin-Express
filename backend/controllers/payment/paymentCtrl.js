@@ -78,6 +78,10 @@ exports.getPayments = asyncHandler(async (req, res) => {
     const payments = await Payment.find({})
       .populate("user")
       .populate("product")
+      .populate({
+        path: "product",
+        populate: { path: "user" }, // Populate the "user" field inside each product
+      })
       .exec();
 
     if (payments) {

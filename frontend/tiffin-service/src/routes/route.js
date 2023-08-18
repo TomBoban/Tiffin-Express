@@ -18,40 +18,64 @@ import { AdminDash } from "../pages/AdminDashboard/AdminDash";
 import ServiceList from "../pages/Admin/ServiceList/ServiceList";
 import { Cart } from "../pages/Cart/Cart";
 import { UserService } from "../pages/UserServices/UserService";
-
+import { ListService } from "../pages/ListServices/ListService";
 
 export const MainRoutes = () => {
   const storeData = useSelector((store) => store.userReducer);
-  const {  userAuth } = storeData;
+  const { userAuth } = storeData;
   return (
     <BrowserRouter>
-    <div className="wrapper">
-    <Header />
-    <div className={userAuth?.role === "Customer" ? "content" : userAuth?.role === "Service" ? "content2" : userAuth?.role === "Admin" ? "content2" :"content"}>
-    <Switch>
-        <Route exact path="/" component={LandingPage} />
-        <Route exact path="/login" component={Login} />
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/aboutus" component={AboutUs} />
-        <Route exact path="/products" component={Products} />
-        <Route exact path="/products/:id" component={ProductDetails} />
-        <Route exact path="/userservice/:id" component={UserService} />
-        <Route exact path="/profile/:id" component={Profile} />
-        <Route exact path="/cart" component={Cart} />
-        <Route exact path="/service/dashboard" component={ServiceDashboard} />
-        <Route exact path="/service/create-service" component={CreateService} />
-        <Route exact path="/admin/dashboard" component={AdminDash}/>
-        <Route exact path="/admin/service-list" component={ServiceList}/>
-      </Switch>
-
-    </div>
-    <div className={userAuth?.role === "Customer" ? "footer" : userAuth?.role === "Service" ? "footer2" : "footer2"}>
-    <Footer />
-    </div>
-      
-      
-    </div>
-      
+      <div className="wrapper">
+        <Header />
+        <div
+          className={
+            userAuth?.role === "Customer"
+              ? "content"
+              : userAuth?.role === "Service"
+              ? "content2"
+              : userAuth?.role === "Admin"
+              ? "content2"
+              : "content"
+          }
+        >
+          <Switch>
+            <Route exact path="/" component={LandingPage} />
+            <Route exact path="/login" component={Login} />
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/aboutus" component={AboutUs} />
+            <Route exact path="/products" component={Products} />
+            <Route exact path="/products/:id" component={ProductDetails} />
+            <Route exact path="/userservice/:id" component={UserService} />
+            
+            <Route exact path="/profile/:id" component={Profile} />
+            <Route exact path="/cart" component={Cart} />
+            <Route
+              exact
+              path="/service/dashboard"
+              component={ServiceDashboard}
+            />
+            <Route exact path="/service/listservice" component={ListService} />
+            <Route
+              exact
+              path="/service/create-service"
+              component={CreateService}
+            />
+            <Route exact path="/admin/dashboard" component={AdminDash} />
+            <Route exact path="/admin/service-list" component={ServiceList} />
+          </Switch>
+        </div>
+        <div
+          className={
+            userAuth?.role === "Customer"
+              ? "footer"
+              : userAuth?.role === "Service"
+              ? "footer2"
+              : "footer2"
+          }
+        >
+          <Footer />
+        </div>
+      </div>
     </BrowserRouter>
   );
 };
