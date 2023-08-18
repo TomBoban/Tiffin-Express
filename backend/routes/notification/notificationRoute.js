@@ -7,6 +7,7 @@ const notificationRouter = express.Router();
 // Create a new Twilio client instance
 const accountSid = process.env.accountSid;
 const authToken = process.env.authToken;
+console.log(accountSid, authToken, "las");
 const twilioClient = twilio(accountSid, authToken);
 
 notificationRouter.post("/send-notification", async (req, res) => {

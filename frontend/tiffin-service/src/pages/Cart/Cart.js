@@ -88,7 +88,7 @@ export const Cart = () => {
        Service Cart
       </Typography>
 
-      {getCartData === null ? ( // Check if getCartData is still null (initial state)
+      {getCartData === null ? ( 
         <CircularProgress />
       ) : filteredCartData?.length === 0 ? (
         <div className="cart-empty">
