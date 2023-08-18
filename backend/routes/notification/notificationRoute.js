@@ -5,8 +5,8 @@ const twilio = require("twilio");
 const notificationRouter = express.Router();
 
 // Create a new Twilio client instance
-const accountSid = "AC5e3d233cfdd3baf3900df57309fbabfe";
-const authToken = "e74a9cf184fc759d95acb49b9fe8ae04";
+const accountSid = process.env.accountSid;
+const authToken = process.env.authToken;
 const twilioClient = twilio(accountSid, authToken);
 
 notificationRouter.post("/send-notification", async (req, res) => {
@@ -15,11 +15,10 @@ notificationRouter.post("/send-notification", async (req, res) => {
   try {
     const smsResult = await twilioClient.messages.create({
       body: message,
-      from: "+14059274411", // Use the Twilio phone number you've purchased
+      from: "+14059274411",
       to: phoneNumber,
     });
 
-    
     res.status(200).json({ message: "SMS sent successfully." });
   } catch (error) {
     console.error("Error sending SMS: ", error);
